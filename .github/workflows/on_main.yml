@@ -26,6 +26,15 @@ jobs:
           service_account: bquest-sa@oghub-bquest-dev.iam.gserviceaccount.com
           project_id: oghub-bquest-dev
       - uses: google-github-actions/setup-gcloud@v1
-      - name: Setup Gcloud parameters
-        run:  |
-          gcloud iam service-accounts list
+      - name: Setup python 
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          architecture: x64
+          cache: poetry
+      - name: Setup Poetry and Python
+        run: |
+          pipx install poetry==${{ env.POETRY_VERSION }}
+          cd python && poetry install --with=dev
+      - name: integration-test
+        run: cd python && poetry run pytest tests/integration/
