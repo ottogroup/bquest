@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "bquest"
+version = "0.1"
+description = ""
+authors = ["Otto Group data.works"]
+
+[tool.poetry.dependencies]
+python = "~3.10"
+pandas = "*"
+google-cloud-bigquery = {extras = ["bqstorage", "pandas"], version = "^3.8"}
+pandas-gbq = ">= 0.18, <1"
+
+[tool.poetry.dev-dependencies]
+mypy = "*"
+pytest = "*"
+mock = "*"
+types-mock = "*"
+black = "^22.10.0"
+pylint = "2.17.1"
+urllib3 = ">=1.26.13"
+libyear = "^0.2.1"
+twine = "^4.0.1"
+"keyrings.google-artifactregistry-auth" = "^1.1.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
