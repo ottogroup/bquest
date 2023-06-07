@@ -29,9 +29,7 @@ def _fix_integer_dtypes(df: DataFrame) -> None:
     Arguments:
         df -- A dataframe, that will be have all int types as int64
     """
-    df[df.select_dtypes("Int64").columns] = df[
-        df.select_dtypes("Int64").columns
-    ].astype("Int64")
+    df[df.select_dtypes("Int64").columns] = df[df.select_dtypes("Int64").columns].astype("Int64")
 
 
 def assert_frame_equal(left: DataFrame, right: DataFrame, **kwargs: Any) -> None:
@@ -49,15 +47,7 @@ def assert_frame_equal(left: DataFrame, right: DataFrame, **kwargs: Any) -> None
     _fix_integer_dtypes(left)
     _fix_integer_dtypes(right)
 
-    left_sorted = (
-        left[sorted(left.columns)]
-        .sort_values(sorted(left.columns))
-        .reset_index(drop=True)
-    )
-    right_sorted = (
-        right[sorted(right.columns)]
-        .sort_values(sorted(right.columns))
-        .reset_index(drop=True)
-    )
+    left_sorted = left[sorted(left.columns)].sort_values(sorted(left.columns)).reset_index(drop=True)
+    right_sorted = right[sorted(right.columns)].sort_values(sorted(right.columns)).reset_index(drop=True)
 
     pd_test.assert_frame_equal(left_sorted, right_sorted, **kwargs)

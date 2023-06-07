@@ -2,14 +2,14 @@
 
 # mypy: allow-untyped-calls
 
-from typing import List, Optional, Dict, Any
+import json
 import uuid
 from io import BytesIO
-import json
+from typing import Any, Dict, List, Optional
 
-from pandas import DataFrame
-from google.cloud import bigquery as bq
 from google.api_core import exceptions
+from google.cloud import bigquery as bq
+from pandas import DataFrame
 
 
 class BQTable:
@@ -17,9 +17,7 @@ class BQTable:
     Represents a BigQuery table.
     """
 
-    def __init__(
-        self, original_table_id: str, test_table_id: str, bq_client: bq.Client
-    ) -> None:
+    def __init__(self, original_table_id: str, test_table_id: str, bq_client: bq.Client) -> None:
         assert original_table_id != test_table_id
 
         self._original_table_id = original_table_id
@@ -58,9 +56,7 @@ class BQTable:
 
     def delete(self) -> None:
         """Deletes the table"""
-        self._bq_client.delete_table(
-            bq.table.TableReference.from_string(self._test_table_id)
-        )
+        self._bq_client.delete_table(bq.table.TableReference.from_string(self._test_table_id))
 
 
 class BQTableDefinition:
@@ -68,9 +64,7 @@ class BQTableDefinition:
     Base class for BigQuery table definitions.
     """
 
-    def __init__(
-        self, original_table_name: str, project: str, dataset: str, location: str
-    ):
+    def __init__(self, original_table_name: str, project: str, dataset: str, location: str):
         self._original_table_name = original_table_name
         self._project = project
         self._dataset = dataset
@@ -112,9 +106,7 @@ class BQTableDataframeDefinition(BQTableDefinition):
     Defines BigQuery tables based on a pandas dataframe.
     """
 
-    def __init__(
-        self, name: str, df: DataFrame, project: str, dataset: str, location: str
-    ) -> None:
+    def __init__(self, name: str, df: DataFrame, project: str, dataset: str, location: str) -> None:
         BQTableDefinition.__init__(self, name, project, dataset, location)
         self._dataframe = df
 
@@ -212,14 +204,10 @@ class BQTableDefinitionBuilder:
         rows: List[Dict[str, Any]],
         schema: Optional[List[bq.SchemaField]] = None,
     ) -> BQTableJsonDefinition:
-        return BQTableJsonDefinition(
-            name, rows, schema, self._project, self._dataset, self._location
-        )
+        return BQTableJsonDefinition(name, rows, schema, self._project, self._dataset, self._location)
 
     def from_df(self, name: str, df: DataFrame) -> BQTableDataframeDefinition:
-        return BQTableDataframeDefinition(
-            name, df, self._project, self._dataset, self._location
-        )
+        return BQTableDataframeDefinition(name, df, self._project, self._dataset, self._location)
 
     def create_empty(self, name: str) -> BQTableDefinition:
         return BQTableDefinition(name, self._project, self._dataset, self._location)

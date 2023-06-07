@@ -1,27 +1,120 @@
 [tool.poetry]
 name = "bquest"
 version = "0.1"
-description = ""
+description = "Effortlessly validate and test your Google BigQuery queries with the power of pandas DataFrames in Python."
 authors = ["Otto Group data.works"]
+license = "Apache Software License"
+readme = "README.rst"
+include = [
+    "LICENSE",
+    "CHANGELOG.rst"
+]
+repository = "https://github.com/ottogroup/bquest"
+# documentation ""
+
+keywords = [
+    "open-source",
+    "google-big-query",
+    "query",
+    "sql",
+    "testing",
+    "pandas"
+]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: Apache Software License",
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "Topic :: Database",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Testing :: Unit",
+    "Topic :: Utilities",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS"
+]
+
+[tool.poetry.urls]
+"Issues" = "https://github.com/ottogroup/bquest/issues"
+"Releases" = "https://github.com/ottogroup/bquest/releases"
 
 [tool.poetry.dependencies]
-python = "~3.10"
-pandas = "*"
-google-cloud-bigquery = {extras = ["bqstorage", "pandas"], version = "^3.8"}
-pandas-gbq = ">= 0.18, <1"
+python = "^3.10"
 
-[tool.poetry.dev-dependencies]
-mypy = "*"
-pytest = "*"
-mock = "*"
-types-mock = "*"
+google-cloud-bigquery = { version = "^3.8", extras = ["bqstorage", "pandas"] }
+pandas = "^2.0.2"
+pandas-gbq = "^0.18"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
 black = "^22.10.0"
-pylint = "2.17.1"
-urllib3 = ">=1.26.13"
 libyear = "^0.2.1"
+mock = "^5.0.2"
+mypy = "^1.3.0"
+poethepoet = "^0.20.0"
+pytest = "^7.3.1"
+ruff = "^0.0.271"
 twine = "^4.0.1"
-"keyrings.google-artifactregistry-auth" = "^1.1.2"
+types-mock = "^5.0.0.6"
+urllib3 = "^2.0.2"
+
+#[tool.poetry.group.docs]
+#optional = true
+#
+#[tool.poetry.group.docs.dependencies]
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+
+select = [
+    # Bandit
+    "S",
+    # Bugbear
+    "B",
+    # Builtins
+    "A",
+    # comprehensions
+    "C4",
+    # eradicate
+    "ERA",
+    # flake8-2020
+    "YTT",
+    # isort
+    "I",
+    # print
+    "T20",
+    # Pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # return
+    "RET",
+]
+
+[tool.poe.tasks]
+# Linting and formatting.
+lint = ["ruff", "black-check"]
+ruff = "ruff ."
+black-check = "black --check ."
+
+format = ["black-fix", "isort-fix"]
+black-fix = "black ."
+isort-fix = "ruff --fix --select=I ."
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
