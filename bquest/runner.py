@@ -1,15 +1,13 @@
 """Module for Running BQuest Tests"""
-from typing import List, Dict, Any, Callable, Optional
-import copy
 import ast
+import copy
 import os
+from typing import Any, Callable, Dict, List, Optional
 
 from google.cloud import bigquery as bq
 from pandas import DataFrame
 
-from bquest.tables import BQTable
-from bquest.tables import BQTableDefinition
-from bquest.tables import BQTableDefinitionBuilder
+from bquest.tables import BQTable, BQTableDefinition, BQTableDefinitionBuilder
 
 
 class BQConfigSubstitutor:
@@ -23,9 +21,7 @@ class BQConfigSubstitutor:
     def original_feature_table_name(self) -> str:
         return str(self._config["feature_table_name"])
 
-    def _map_source_table_ids_to_mock_table_ids(
-        self, source_tables: List[BQTable]
-    ) -> Dict[str, str]:
+    def _map_source_table_ids_to_mock_table_ids(self, source_tables: List[BQTable]) -> Dict[str, str]:
         """Match source tables with their mocks."""
         result = {}
         table_id_mapping = {t.original_table_id: t.test_table_id for t in source_tables}
@@ -62,9 +58,7 @@ class BQConfigSubstitutor:
         config["start_date"] = start_date
         config["end_date"] = end_date
         config["feature_table_name"] = feature_table_name.test_table_id
-        config["source_tables"] = self._map_source_table_ids_to_mock_table_ids(
-            test_tables
-        )
+        config["source_tables"] = self._map_source_table_ids_to_mock_table_ids(test_tables)
         return config
 
 
@@ -75,18 +69,14 @@ class BaseRunner:
         self._bq_client = bq_client
         self._bq_table_def_builder = BQTableDefinitionBuilder(project, dataset)
 
-    def _create_source_tables(
-        self, table_definitions: List[BQTableDefinition]
-    ) -> List[BQTable]:
+    def _create_source_tables(self, table_definitions: List[BQTableDefinition]) -> List[BQTable]:
         result = []
         for table_def in table_definitions:
             test_table = table_def.load_to_bq(self._bq_client)
             result.append(test_table)
         return result
 
-    def _create_result_table_from_def(
-        self, table_definition: BQTableDefinition
-    ) -> BQTable:
+    def _create_result_table_from_def(self, table_definition: BQTableDefinition) -> BQTable:
         return table_definition.load_to_bq(self._bq_client)
 
     def _create_empty_result_table(self, table_name: str) -> BQTable:
@@ -134,14 +124,10 @@ class BQConfigRunner(BaseRunner):
         result_table = (
             self._create_result_table_from_def(result_table_definition)
             if result_table_definition
-            else self._create_empty_result_table(
-                substitutor.original_feature_table_name
-            )
+            else self._create_empty_result_table(substitutor.original_feature_table_name)
         )
 
-        test_bq_config = substitutor.substitute(
-            start_date, end_date, result_table, source_tables
-        )
+        test_bq_config = substitutor.substitute(start_date, end_date, result_table, source_tables)
 
         # run config with substituted table identifiers
         self._bq_executor_func(test_bq_config, templating_vars)
@@ -168,9 +154,7 @@ class BQConfigFileRunner:
         templating_vars: Optional[Dict[str, str]] = None,
     ) -> DataFrame:
         """Runs a BQ configuration file"""
-        with open(
-            os.path.join(self._config_base_path, path_to_config), "r", encoding="UTF-8"
-        ) as f:
+        with open(os.path.join(self._config_base_path, path_to_config), "r", encoding="UTF-8") as f:
             try:
                 config = ast.literal_eval(f.read())
             except:
@@ -179,9 +163,7 @@ class BQConfigFileRunner:
                 start_date,
                 end_date,
                 source_table_definitions,
-                BQConfigSubstitutor(
-                    config, allow_partial=allow_partial_table_substitutions
-                ),
+                BQConfigSubstitutor(config, allow_partial=allow_partial_table_substitutions),
                 result_table_definition=result_table_definition,
                 templating_vars=templating_vars,
             )
@@ -229,9 +211,7 @@ class SQLRunner(BaseRunner):
             sql_with_substitutions = sql_with_substitutions.replace(key, value)
 
         job_config = bq.QueryJobConfig()
-        query_job = self._bq_client.query(
-            sql_with_substitutions, location="EU", job_config=job_config
-        )
+        query_job = self._bq_client.query(sql_with_substitutions, location="EU", job_config=job_config)
         query_job.result()
 
         result_df = query_job.result().to_dataframe()
@@ -260,13 +240,9 @@ class SQLFileRunner:
         if string_replacements is None:
             string_replacements = {}
 
-        with open(
-            os.path.join(self._base_path, path_to_sql), "r", encoding="UTF-8"
-        ) as f:
+        with open(os.path.join(self._base_path, path_to_sql), "r", encoding="UTF-8") as f:
             try:
                 sql = f.read()
             except:
                 raise ValueError("Could not read the SQL file.")
-            return self._sql_runner.run(
-                sql, source_table_definitions, substitutions, string_replacements
-            )
+            return self._sql_runner.run(sql, source_table_definitions, substitutions, string_replacements)
