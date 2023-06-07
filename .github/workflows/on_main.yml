@@ -15,7 +15,7 @@ on:
      - "main"
 
 jobs:
-  release:
+  integration-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,15 +26,15 @@ jobs:
           service_account: bquest-sa@oghub-bquest-dev.iam.gserviceaccount.com
           project_id: oghub-bquest-dev
       - uses: google-github-actions/setup-gcloud@v1
+      - name: Setup Poetry
+        run: pipx install poetry==${{ env.POETRY_VERSION }}
       - name: Setup python 
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: x64
           cache: poetry
-      - name: Setup Poetry and Python
-        run: |
-          pipx install poetry==${{ env.POETRY_VERSION }}
-          cd python && poetry install --with=dev
+      - name: Install project
+        run: cd python && poetry install --with=dev
       - name: integration-test
         run: cd python && poetry run pytest tests/integration/
