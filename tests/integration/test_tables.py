@@ -9,7 +9,7 @@ PROJECT_ID = "oghub-bquest-dev"
 class TestBigQueryTable:
     def setup_method(self) -> None:
         self.table_def_builder = BQTableDefinitionBuilder(
-            PROJECT_ID, dataset="bquest"
+            PROJECT_ID, dataset="bquest", location="europe-west1"
         )
 
     def test_create_and_delete_tables_from_json_definition(self) -> None:
