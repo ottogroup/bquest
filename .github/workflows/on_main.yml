@@ -35,6 +35,6 @@ jobs:
           architecture: x64
           cache: poetry
       - name: Install project
-        run: cd python && poetry install --with=dev
+        run: poetry install --with=dev
       - name: integration-test
-        run: cd python && poetry run pytest tests/integration/
+        run: poetry run pytest tests/integration/
