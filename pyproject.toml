@@ -52,6 +52,7 @@ python = "^3.10"
 google-cloud-bigquery = { version = "^3.8", extras = ["bqstorage", "pandas"] }
 pandas = "^2.0.2"
 pandas-gbq = "^0.18"
+sqlvalidator = "^0.0.20"
 
 [tool.poetry.group.dev]
 optional = true
@@ -67,9 +68,6 @@ ruff = "^0.0.271"
 twine = "^4.0.1"
 types-mock = "^5.0.0.6"
 urllib3 = "^2.0.2"
-mkdocs = "^1.4.3"
-mkdocs-material = "^9.1.15"
-mkdocstrings-python = "^1.1.2"
 
 [tool.poetry.group.docs]
 optional = true
