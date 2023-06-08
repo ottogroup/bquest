@@ -7,9 +7,9 @@ import uuid
 from io import BytesIO
 from typing import Any, Dict, List, Optional
 
+import pandas
+import google.cloud.bigquery
 from google.api_core import exceptions
-from google.cloud import bigquery as bq
-from pandas import DataFrame
 
 
 class BQTable:
@@ -17,7 +17,7 @@ class BQTable:
     Represents a BigQuery table.
     """
 
-    def __init__(self, original_table_id: str, test_table_id: str, bq_client: bq.Client) -> None:
+    def __init__(self, original_table_id: str, test_table_id: str, bq_client: google.cloud.bigquery.Client) -> None:
         assert original_table_id != test_table_id
 
         self._original_table_id = original_table_id
@@ -42,11 +42,11 @@ class BQTable:
             table.require_partition_filter = False
             self._bq_client.update_table(table, ["require_partition_filter"])
 
-    def to_df(self) -> DataFrame:
+    def to_df(self) -> pandas.DataFrame:
         """Loads the table into a dataframe
 
         Returns:
-            DataFrame -- A pandas dataframe
+            Loaded table as pandas dataframe
         """
         self.remove_require_partition_filter(self._test_table_id)
 
@@ -56,7 +56,7 @@ class BQTable:
 
     def delete(self) -> None:
         """Deletes the table"""
-        self._bq_client.delete_table(bq.table.TableReference.from_string(self._test_table_id))
+        self._bq_client.delete_table(google.cloud.bigquery.table.TableReference.from_string(self._test_table_id))
 
 
 class BQTableDefinition:
@@ -97,7 +97,7 @@ class BQTableDefinition:
         """
         return f"{self._project}.{self._dataset}.{self.table_name}"
 
-    def load_to_bq(self, bq_client: bq.Client) -> BQTable:
+    def load_to_bq(self, bq_client: google.cloud.bigquery.Client) -> BQTable:
         return BQTable(self._original_table_name, self.fq_table_name, bq_client)
 
 
@@ -106,18 +106,18 @@ class BQTableDataframeDefinition(BQTableDefinition):
     Defines BigQuery tables based on a pandas dataframe.
     """
 
-    def __init__(self, name: str, df: DataFrame, project: str, dataset: str, location: str) -> None:
+    def __init__(self, name: str, df: pandas.DataFrame, project: str, dataset: str, location: str) -> None:
         BQTableDefinition.__init__(self, name, project, dataset, location)
         self._dataframe = df
 
-    def load_to_bq(self, bq_client: bq.Client) -> BQTable:
+    def load_to_bq(self, bq_client: google.cloud.bigquery.Client) -> BQTable:
         """Loads this definition to a BigQuery table.
 
-        Arguments:
-            bq_client -- A BigQuery client
+        Args:
+            bq_client: A BigQuery client
 
         Returns:
-            BQTable -- A representative of the BigQuery table which was created.
+            BQTable: A representative of the BigQuery table which was created.
         """
         self._dataframe.to_gbq(
             f"{self._dataset}.{self.table_name}",
@@ -141,7 +141,7 @@ class BQTableJsonDefinition(BQTableDefinition):
         self,
         name: str,
         rows: List[Dict[str, Any]],
-        schema: Optional[List[bq.SchemaField]],
+        schema: Optional[List[google.cloud.bigquery.SchemaField]],
         project: str,
         dataset: str,
         location: str,
@@ -155,9 +155,9 @@ class BQTableJsonDefinition(BQTableDefinition):
         rows_as_json = [json.dumps(row) for row in rows]
         return BytesIO(bytes("\n".join(rows_as_json), "ascii"))
 
-    def _create_bq_load_config(self) -> bq.job.LoadJobConfig:
-        load_config = bq.job.LoadJobConfig()
-        load_config.source_format = bq.job.SourceFormat.NEWLINE_DELIMITED_JSON
+    def _create_bq_load_config(self) -> google.cloud.bigquery.job.LoadJobConfig:
+        load_config = google.cloud.bigquery.job.LoadJobConfig()
+        load_config.source_format = google.cloud.bigquery.job.SourceFormat.NEWLINE_DELIMITED_JSON
         if self._schema:
             load_config.schema = self._schema
             load_config.autodetect = False
@@ -165,19 +165,19 @@ class BQTableJsonDefinition(BQTableDefinition):
             load_config.autodetect = True
         return load_config
 
-    def load_to_bq(self, bq_client: bq.Client) -> BQTable:
+    def load_to_bq(self, bq_client: google.cloud.bigquery.Client) -> BQTable:
         """Loads this definition to a BigQuery table.
 
         Arguments:
-            bq_client -- A BigQuery client
+            bq_client: A BigQuery client
 
         Returns:
-            BQTable -- A representative of the BigQuery table which was created.
+            BQTable: A representative of the BigQuery table which was created.
         """
         test_table_id = f"{self._project}.{self._dataset}.{self.table_name}"
         job = bq_client.load_table_from_file(
             self._rows_json_sources,
-            bq.table.TableReference.from_string(test_table_id),
+            google.cloud.bigquery.table.TableReference.from_string(test_table_id),
             location=self._location,
             job_config=self._create_bq_load_config(),
         )
@@ -202,11 +202,11 @@ class BQTableDefinitionBuilder:
         self,
         name: str,
         rows: List[Dict[str, Any]],
-        schema: Optional[List[bq.SchemaField]] = None,
+        schema: Optional[List[google.cloud.bigquery.SchemaField]] = None,
     ) -> BQTableJsonDefinition:
         return BQTableJsonDefinition(name, rows, schema, self._project, self._dataset, self._location)
 
-    def from_df(self, name: str, df: DataFrame) -> BQTableDataframeDefinition:
+    def from_df(self, name: str, df: pandas.DataFrame) -> BQTableDataframeDefinition:
         return BQTableDataframeDefinition(name, df, self._project, self._dataset, self._location)
 
     def create_empty(self, name: str) -> BQTableDefinition:

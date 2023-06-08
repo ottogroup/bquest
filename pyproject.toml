@@ -67,11 +67,18 @@ ruff = "^0.0.271"
 twine = "^4.0.1"
 types-mock = "^5.0.0.6"
 urllib3 = "^2.0.2"
+mkdocs = "^1.4.3"
+mkdocs-material = "^9.1.15"
+mkdocstrings-python = "^1.1.2"
 
-#[tool.poetry.group.docs]
-#optional = true
-#
-#[tool.poetry.group.docs.dependencies]
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mike = "^1.1.2"
+mkdocs = "^1.4.3"
+mkdocs-material = "^9.1.15"
+mkdocstrings-python = "^1.1.2"
 
 [tool.black]
 line-length = 120
