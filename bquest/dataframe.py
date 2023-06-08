@@ -2,17 +2,20 @@
 from typing import Any
 
 import numpy as np
-from pandas import DataFrame
+import pandas
 from pandas import testing as pd_test
 
 
-def standardize_frame_numerics(df: DataFrame, float_precision: int = 2) -> DataFrame:
+def standardize_frame_numerics(df: pandas.DataFrame, float_precision: int = 2) -> pandas.DataFrame:
     """Standardizes numerics inside a dataframe to facilitate comparison between
      dataframes with respect to meaningful differences.
 
-    Arguments:
-        df -- Pandas dataframe to be standardized
-        float_precision -- level of precision for rounding floats
+    Args:
+        df: Pandas dataframe to be standardized
+        float_precision: level of precision for rounding floats
+
+    Returns:
+        Standardized dataframe
     """
     df = df.round(float_precision)
     for col in df.columns:
@@ -23,25 +26,22 @@ def standardize_frame_numerics(df: DataFrame, float_precision: int = 2) -> DataF
     return df.fillna(value=np.nan).reset_index(drop=True)
 
 
-def _fix_integer_dtypes(df: DataFrame) -> None:
+def _fix_integer_dtypes(df: pandas.DataFrame) -> None:
     """Since some version, pandas can not infer in assert_frame_equals Int64 as int64
 
-    Arguments:
-        df -- A dataframe, that will be have all int types as int64
+    Args:
+        df: A dataframe, that will behave all int types as int64
     """
     df[df.select_dtypes("Int64").columns] = df[df.select_dtypes("Int64").columns].astype("Int64")
 
 
-def assert_frame_equal(left: DataFrame, right: DataFrame, **kwargs: Any) -> None:
+def assert_frame_equal(left: pandas.DataFrame, right: pandas.DataFrame, **kwargs: Any) -> None:
     """Asserts that two dataframes are equal regardless of their order of rows
 
-    Arguments:
-        left -- A dataframe, usually the result of a function under test.
-        right -- Another dataframe, usually what we expect in a test.
-
-    Keyword Arguments:
-        Keyword arguments of pandas.testing.assert_frame_equal
-    <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.testing.assert_frame_equal.html>
+    Args:
+        left: A dataframe, usually the result of a function under test
+        right: Another dataframe, usually what we expect in a test
+        **kwargs: Keyword arguments of pandas.testing.assert_frame_equal <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.testing.assert_frame_equal.html>
     """
 
     _fix_integer_dtypes(left)
