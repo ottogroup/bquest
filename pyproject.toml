@@ -2,7 +2,7 @@
 name = "bquest"
 version = "0.1"
 description = "Effortlessly validate and test your Google BigQuery queries with the power of pandas DataFrames in Python."
-authors = ["Otto Group data.works"]
+authors = ["Otto Group data.works GmbH"]
 license = "Apache Software License"
 readme = "README.rst"
 include = [
