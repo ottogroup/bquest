@@ -10,7 +10,7 @@ include = [
     "CHANGELOG.rst"
 ]
 repository = "https://github.com/ottogroup/bquest"
-# documentation ""
+documentation = "https://ottogroup.github.io/bquest/"
 
 keywords = [
     "open-source",
