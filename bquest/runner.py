@@ -4,8 +4,8 @@ import copy
 import os
 from typing import Any, Callable, Dict, List, Optional
 
-from google.cloud import bigquery as bq
 import pandas
+from google.cloud import bigquery as bq
 
 from bquest.tables import BQTable, BQTableDefinition, BQTableDefinitionBuilder
 
@@ -130,8 +130,7 @@ class BQConfigRunner(BaseRunner):
         # run config with substituted table identifiers
         self._bq_executor_func(test_bq_config, templating_vars)
 
-        result_df = result_table.to_df()
-        return result_df
+        return result_table.to_df()
 
 
 class BQConfigFileRunner:
@@ -155,8 +154,8 @@ class BQConfigFileRunner:
         with open(os.path.join(self._config_base_path, path_to_config), "r", encoding="UTF-8") as f:
             try:
                 config = ast.literal_eval(f.read())
-            except:
-                raise ValueError("Could not read the configuration.")
+            except ValueError as e:
+                raise ValueError("Could not read the configuration.") from e
             return self._bq_config_runner.run_config(
                 start_date,
                 end_date,
@@ -197,8 +196,8 @@ class SQLRunner(BaseRunner):
         if string_replacements is None:
             string_replacements = {}
 
-        source_tables = self._create_source_tables(source_table_definitions)
-        result_table = (
+        _ = self._create_source_tables(source_table_definitions)
+        _ = (
             self._create_result_table_from_def(result_table_definition)
             if result_table_definition
             else self._create_empty_result_table("result")
@@ -212,8 +211,7 @@ class SQLRunner(BaseRunner):
         query_job = self._bq_client.query(sql_with_substitutions, location="EU", job_config=job_config)
         query_job.result()
 
-        result_df = query_job.result().to_dataframe()
-        return result_df
+        return query_job.result().to_dataframe()
 
 
 class SQLFileRunner:
@@ -238,9 +236,10 @@ class SQLFileRunner:
         if string_replacements is None:
             string_replacements = {}
 
-        with open(os.path.join(self._base_path, path_to_sql), "r", encoding="UTF-8") as f:
-            try:
+        file = os.path.join(self._base_path, path_to_sql)
+        try:
+            with open(file, "r", encoding="UTF-8") as f:
                 sql = f.read()
-            except:
-                raise ValueError("Could not read the SQL file.")
-            return self._sql_runner.run(sql, source_table_definitions, substitutions, string_replacements)
+        except IOError as e:
+            raise ValueError(f"Could not read the SQL file {file}.") from e
+        return self._sql_runner.run(sql, source_table_definitions, substitutions, string_replacements)
