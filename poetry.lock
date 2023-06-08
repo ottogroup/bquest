@@ -1314,13 +1314,13 @@ xml = ["lxml (>=4.6.3)"]
 
 [[package]]
 name = "pandas-gbq"
-version = "0.18.1"
+version = "0.19.2"
 description = "Google BigQuery connector for pandas"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pandas-gbq-0.18.1.tar.gz", hash = "sha256:f7ceeb3807367d2a8853fb51cb80e838444a1e57b59fe8591c28bfa2ca829a3f"},
-    {file = "pandas_gbq-0.18.1-py2.py3-none-any.whl", hash = "sha256:e5f478d0a586d956ed5fb9e2ffe3354db6e7e828af4a059eed8302cb48060f1c"},
+    {file = "pandas-gbq-0.19.2.tar.gz", hash = "sha256:b0f7fa84a2be0fe767e33a008ca7e4ad9a9e3ac67255fd0a41fc19b503138447"},
+    {file = "pandas_gbq-0.19.2-py2.py3-none-any.whl", hash = "sha256:0ef8da3e4088053a2bea069ed688992a44b52af67dadb97eee494b32a2147563"},
 ]
 
 [package.dependencies]
@@ -1333,7 +1333,7 @@ google-cloud-bigquery-storage = ">=2.16.2,<3.0.0dev"
 numpy = ">=1.16.6"
 pandas = ">=1.1.4"
 pyarrow = ">=3.0.0"
-pydata-google-auth = ">=1.4.0"
+pydata-google-auth = ">=1.5.0"
 setuptools = "*"
 
 [package.extras]
@@ -2191,4 +2191,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "18401f7ecc03e5a005f7d28d2acd335cf7f41dd687e2d811889e44dd3ebc4bdc"
+content-hash = "1bcee73f412c0ae06ebe13860a999c9edd4da9a9917c8058a083a97d950b2898"

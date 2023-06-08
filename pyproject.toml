@@ -51,7 +51,7 @@ python = "^3.10"
 
 google-cloud-bigquery = { version = "^3.8", extras = ["bqstorage", "pandas"] }
 pandas = "^2.0.2"
-pandas-gbq = "^0.18"
+pandas-gbq = "^0.19"
 sqlvalidator = "^0.0.20"
 
 [tool.poetry.group.dev]
