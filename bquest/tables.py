@@ -1,15 +1,14 @@
 """Module for dealing with BigQueryTables"""
-
-# mypy: allow-untyped-calls
-
 import json
 import uuid
 from io import BytesIO
 from typing import Any, Dict, List, Optional
 
-import pandas
 import google.cloud.bigquery
+import pandas as pd
 from google.api_core import exceptions
+
+from bquest.util import is_sql
 
 
 class BQTable:
@@ -18,7 +17,11 @@ class BQTable:
     """
 
     def __init__(self, original_table_id: str, test_table_id: str, bq_client: google.cloud.bigquery.Client) -> None:
-        assert original_table_id != test_table_id
+        if original_table_id == test_table_id:
+            raise ValueError("'original_table_id' and 'test_table_id' can't be the same.")
+
+        if is_sql(test_table_id):
+            raise ValueError("'test_table_id' contains sql syntax.")
 
         self._original_table_id = original_table_id
         self._test_table_id = test_table_id
@@ -42,7 +45,7 @@ class BQTable:
             table.require_partition_filter = False
             self._bq_client.update_table(table, ["require_partition_filter"])
 
-    def to_df(self) -> pandas.DataFrame:
+    def to_df(self) -> pd.DataFrame:
         """Loads the table into a dataframe
 
         Returns:
@@ -50,7 +53,7 @@ class BQTable:
         """
         self.remove_require_partition_filter(self._test_table_id)
 
-        sql = f"SELECT * FROM `{self._test_table_id}`"
+        sql = f"SELECT * FROM `{self._test_table_id}`"  # noqa: S608, SQL injection prevented in init
 
         return self._bq_client.query(sql).to_dataframe()
 
@@ -106,7 +109,7 @@ class BQTableDataframeDefinition(BQTableDefinition):
     Defines BigQuery tables based on a pandas dataframe.
     """
 
-    def __init__(self, name: str, df: pandas.DataFrame, project: str, dataset: str, location: str) -> None:
+    def __init__(self, name: str, df: pd.DataFrame, project: str, dataset: str, location: str) -> None:
         BQTableDefinition.__init__(self, name, project, dataset, location)
         self._dataframe = df
 
@@ -183,9 +186,9 @@ class BQTableJsonDefinition(BQTableDefinition):
         )
         try:
             job.result()
-        except exceptions.BadRequest:
+        except exceptions.BadRequest as e:
             # same error but with full error msg
-            raise exceptions.BadRequest(job.errors)
+            raise exceptions.BadRequest(str(job.errors)) from e
 
         return BQTable(self._original_table_name, test_table_id, bq_client)
 
@@ -206,7 +209,7 @@ class BQTableDefinitionBuilder:
     ) -> BQTableJsonDefinition:
         return BQTableJsonDefinition(name, rows, schema, self._project, self._dataset, self._location)
 
-    def from_df(self, name: str, df: pandas.DataFrame) -> BQTableDataframeDefinition:
+    def from_df(self, name: str, df: pd.DataFrame) -> BQTableDataframeDefinition:
         return BQTableDataframeDefinition(name, df, self._project, self._dataset, self._location)
 
     def create_empty(self, name: str) -> BQTableDefinition:
