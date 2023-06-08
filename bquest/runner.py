@@ -5,7 +5,7 @@ import os
 from typing import Any, Callable, Dict, List, Optional
 
 from google.cloud import bigquery as bq
-from pandas import DataFrame
+import pandas
 
 from bquest.tables import BQTable, BQTableDefinition, BQTableDefinitionBuilder
 
@@ -45,7 +45,7 @@ class BQConfigSubstitutor:
     ) -> Dict[str, Any]:
         """Substitutes a wide array of parameters inside a BQ configuration.
 
-        Arguments:
+        Args:
             start_date: the start date
             end_date: the end date
             feature_table_name: the test table where the results will be stored
@@ -107,18 +107,16 @@ class BQConfigRunner(BaseRunner):
         substitutor: BQConfigSubstitutor,
         result_table_definition: Optional[BQTableDefinition] = None,
         templating_vars: Optional[Dict[str, str]] = None,
-    ) -> DataFrame:
+    ) -> pandas.DataFrame:
         """Runs a BQ configuration with custom table definitions.
 
-        Arguments:
+        Args:
             start_date: the start date (e.g. 20190301)
             end_date: the end date (e.g. 20190308)
-            source_table_definitions: custom table definitions
-                that replace the source tables of the BQ configuration
+            source_table_definitions: custom table definitions that replace the source tables of the BQ configuration
             substitutor:  a substitutor for BQ configurations
-
         Returns:
-            Dataframe: the contents of the results table
+            the contents of the results table
         """
         source_tables = self._create_source_tables(source_table_definitions)
         result_table = (
@@ -137,7 +135,7 @@ class BQConfigRunner(BaseRunner):
 
 
 class BQConfigFileRunner:
-    "Class for Running BQConfigs"
+    """Class for Running BQConfigs"""
 
     def __init__(self, bq_config_runner: BQConfigRunner, config_base_path: str) -> None:
         self._bq_config_runner = bq_config_runner
@@ -152,7 +150,7 @@ class BQConfigFileRunner:
         result_table_definition: Optional[BQTableDefinition] = None,
         allow_partial_table_substitutions: bool = False,
         templating_vars: Optional[Dict[str, str]] = None,
-    ) -> DataFrame:
+    ) -> pandas.DataFrame:
         """Runs a BQ configuration file"""
         with open(os.path.join(self._config_base_path, path_to_config), "r", encoding="UTF-8") as f:
             try:
@@ -190,7 +188,7 @@ class SQLRunner(BaseRunner):
         substitutions: Optional[Dict[str, str]] = None,
         string_replacements: Optional[Dict[str, str]] = None,
         result_table_definition: Optional[BQTableDefinition] = None,
-    ) -> DataFrame:
+    ) -> pandas.DataFrame:
         # pylint: disable=unused-variable, missing-function-docstring
 
         if substitutions is None:
@@ -231,7 +229,7 @@ class SQLFileRunner:
         source_table_definitions: List[BQTableDefinition],
         substitutions: Optional[Dict[str, str]] = None,
         string_replacements: Optional[Dict[str, str]] = None,
-    ) -> DataFrame:
+    ) -> pandas.DataFrame:
         # pylint: disable=missing-function-docstring
 
         if substitutions is None:

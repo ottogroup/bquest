@@ -1,3 +1,6 @@
+.. image:: https://raw.githubusercontent.com/ottogroup/bquest/main/docs/assets/logo.svg
+    :alt: BQuest Logo
+
 BQuest
 ######
 

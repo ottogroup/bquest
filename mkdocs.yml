@@ -1,0 +1,30 @@
+site_name: BQuest
+
+repo_url: https://github.com/ottogroup/bquest
+repo_name: ottogroup/bquest
+
+theme:
+  name: "material"
+  logo: assets/icon.svg
+  favicon: assets/icon.svg
+  language: en
+  custom_dir: docs/overrides
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    primary: white
+
+plugins:
+  - mkdocstrings:
+
+extra:
+  version:
+    provider: mike
+
+nav:
+  - Introduction: index.md
+  - Getting Started: getting-started.md
+  - Reference:
+    - Dataframe: reference/dataframe.md
+    - Runner: reference/runner.md
+    - Tables: reference/tables.md
