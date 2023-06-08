@@ -1,4 +1,4 @@
-name: Lint
+name: Test
 
 permissions:
     id-token: write
@@ -7,7 +7,7 @@ permissions:
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull_request: 
     branches: [ main ]
 
   # Allow job to be triggered manually.
@@ -19,8 +19,21 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
+  integration-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.10", "3.11"]
+        include:
+          - os: "macos-latest"
+            python-version: "3.11"
+          - os: "windows-latest"
+            python-version: "3.11"
+    defaults:
+      run:
+        shell: bash
+    name: Python ${{ matrix.python-version }} on OS ${{ matrix.os }}
     steps:
       - name: Acquire sources
         uses: actions/checkout@v3
@@ -32,18 +45,18 @@ jobs:
           service_account: bquest-sa@oghub-bquest-dev.iam.gserviceaccount.com
           project_id: oghub-bquest-dev
 
-      - name: Install Poetry
+      - name: Setup Poetry
         run: pipx install poetry
 
-      - name: Setup Python
+      - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
           architecture: x64
           cache: poetry
 
       - name: Install project
         run: poetry install --no-interaction --no-root --with=dev
 
-      - name: Run code-style checks
-        run: poetry run poe lint
+      - name: Integration test
+        run: poetry run pytest -m integration
