@@ -626,7 +626,8 @@
 
         <details class="quote">
           <summary>Source code in <code>bquest/tables.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
@@ -670,13 +671,20 @@
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTable</span><span class="p">:</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents a BigQuery table.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">test_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="n">original_table_id</span> <span class="o">!=</span> <span class="n">test_table_id</span>
+        <span class="k">if</span> <span class="n">original_table_id</span> <span class="o">==</span> <span class="n">test_table_id</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;original_table_id&#39; and &#39;test_table_id&#39; can&#39;t be the same.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">is_sql</span><span class="p">(</span><span class="n">test_table_id</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;test_table_id&#39; contains sql syntax.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span> <span class="o">=</span> <span class="n">original_table_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span> <span class="o">=</span> <span class="n">test_table_id</span>
@@ -700,7 +708,7 @@
             <span class="n">table</span><span class="o">.</span><span class="n">require_partition_filter</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">update_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;require_partition_filter&quot;</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads the table into a dataframe</span>
 
 <span class="sd">        Returns:</span>
@@ -708,7 +716,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_require_partition_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span><span class="p">)</span>
 
-        <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span><span class="si">}</span><span class="s2">`&quot;</span>
+        <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span><span class="si">}</span><span class="s2">`&quot;</span>  <span class="c1"># noqa: S608, SQL injection prevented in init</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 
@@ -788,9 +796,9 @@
 
       <details class="quote">
         <summary>Source code in <code>bquest/tables.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Deletes the table&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">delete_table</span><span class="p">(</span><span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">TableReference</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
@@ -824,7 +832,7 @@
     <tbody>
         <tr>
           <td>
-                <code>pandas.<span title="pandas.DataFrame">DataFrame</span></code>
+                <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -837,17 +845,17 @@
 
       <details class="quote">
         <summary>Source code in <code>bquest/tables.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads the table into a dataframe</span>
 
 <span class="sd">    Returns:</span>
@@ -855,7 +863,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">remove_require_partition_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span><span class="p">)</span>
 
-    <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span><span class="si">}</span><span class="s2">`&quot;</span>
+    <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span><span class="si">}</span><span class="s2">`&quot;</span>  <span class="c1"># noqa: S608, SQL injection prevented in init</span>
 
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -893,10 +901,7 @@
 
         <details class="quote">
           <summary>Source code in <code>bquest/tables.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
 <span class="normal">110</span>
@@ -921,12 +926,15 @@
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
-<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDataframeDefinition</span><span class="p">(</span><span class="n">BQTableDefinition</span><span class="p">):</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDataframeDefinition</span><span class="p">(</span><span class="n">BQTableDefinition</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Defines BigQuery tables based on a pandas dataframe.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">BQTableDefinition</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dataframe</span> <span class="o">=</span> <span class="n">df</span>
 
@@ -1031,10 +1039,7 @@
 
       <details class="quote">
         <summary>Source code in <code>bquest/tables.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
 <span class="normal">119</span>
@@ -1050,7 +1055,10 @@
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
-<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads this definition to a BigQuery table.</span>
 
 <span class="sd">    Args:</span>
@@ -1103,10 +1111,7 @@
 
         <details class="quote">
           <summary>Source code in <code>bquest/tables.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 62</span>
-<span class="normal"> 63</span>
-<span class="normal"> 64</span>
-<span class="normal"> 65</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 65</span>
 <span class="normal"> 66</span>
 <span class="normal"> 67</span>
 <span class="normal"> 68</span>
@@ -1142,7 +1147,10 @@
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDefinition</span><span class="p">:</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDefinition</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for BigQuery table definitions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1246,10 +1254,7 @@
 
         <details class="quote">
           <summary>Source code in <code>bquest/tables.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">193</span>
-<span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">196</span>
 <span class="normal">197</span>
 <span class="normal">198</span>
 <span class="normal">199</span>
@@ -1266,7 +1271,10 @@
 <span class="normal">210</span>
 <span class="normal">211</span>
 <span class="normal">212</span>
-<span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDefinitionBuilder</span><span class="p">:</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDefinitionBuilder</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper class for building BQTableDefinitions&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;bquest&quot;</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;EU&quot;</span><span class="p">):</span>
@@ -1282,7 +1290,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTableJsonDefinition</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">BQTableJsonDefinition</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTableDataframeDefinition</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTableDataframeDefinition</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">BQTableDataframeDefinition</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">create_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTableDefinition</span><span class="p">:</span>
@@ -1331,10 +1339,7 @@
 
         <details class="quote">
           <summary>Source code in <code>bquest/tables.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
@@ -1386,7 +1391,10 @@
 <span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span>
-<span class="normal">190</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableJsonDefinition</span><span class="p">(</span><span class="n">BQTableDefinition</span><span class="p">):</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableJsonDefinition</span><span class="p">(</span><span class="n">BQTableDefinition</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Defines BigQuery tables based on a JSON format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1437,9 +1445,9 @@
         <span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-        <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="c1"># same error but with full error msg</span>
-            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">errors</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">e</span>
 
         <span class="k">return</span> <span class="n">BQTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_table_name</span><span class="p">,</span> <span class="n">test_table_id</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1523,10 +1531,7 @@
 
       <details class="quote">
         <summary>Source code in <code>bquest/tables.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">171</span>
 <span class="normal">172</span>
 <span class="normal">173</span>
 <span class="normal">174</span>
@@ -1545,7 +1550,10 @@
 <span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span>
-<span class="normal">190</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads this definition to a BigQuery table.</span>
 
 <span class="sd">    Arguments:</span>
@@ -1563,9 +1571,9 @@
     <span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-    <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span><span class="p">:</span>
+    <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="c1"># same error but with full error msg</span>
-        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">BadRequest</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">errors</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">e</span>
 
     <span class="k">return</span> <span class="n">BQTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_table_name</span><span class="p">,</span> <span class="n">test_table_id</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
