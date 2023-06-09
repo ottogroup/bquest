@@ -58,5 +58,8 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction --no-root --with=dev
 
-      - name: Integration test
+      - name: Unit tests
+        run: poetry run pytest -m unit
+
+      - name: Integration tests
         run: poetry run pytest -m integration
