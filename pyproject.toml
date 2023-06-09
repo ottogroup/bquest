@@ -127,7 +127,8 @@ isort-fix = "ruff --fix --select=I ."
 [tool.pytest.ini_options]
 log_level = "DEBUG"
 markers = [
-    "integration: integration tests"
+    "integration: integration tests",
+    "unit: unit tests"
 ]
 testpaths = ["tests"]
 
