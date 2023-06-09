@@ -21,7 +21,8 @@ jobs:
       - run: pipx install poetry
       - uses: actions/setup-python@v3
         with:
-          python-version: '3'
+          python-version: "3.11"
+          architecture: x64
           cache: poetry
       - name: Configure Git user
         run: |
@@ -29,3 +30,25 @@ jobs:
           git config --local user.name "github-actions[bot]"
       - run: poetry install --only docs
       - run: poetry run mike deploy v$(poetry version --short) latest --update-aliases --push
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acquire sources
+        uses: actions/checkout@v3
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          architecture: x64
+          cache: poetry
+
+      - name: Build
+        run: poetry build
+
+      - name: Publish
+        run: poetry publish --username=__token__ --password=${{ secrets.PYPI_TOKEN }}
