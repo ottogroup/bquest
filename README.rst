@@ -12,6 +12,31 @@ This library is a work in progress!
 
 Breaking changes should be expected until a 1.0 release, so version pinning is recommended.
 
+.. image:: https://github.com/ottogroup/bquest/workflows/Tests/badge.svg
+   :target: https://github.com/ottogroup/bquest/actions?workflow=Tests
+   :alt: CI: Overall outcome
+.. image:: https://github.com/ottogroup/bquest/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages
+   :target: https://github.com/ottogroup/bquest/actions/workflows/pages/pages-build-deployment
+   :alt: CD: gh-pages documentation
+.. image:: https://img.shields.io/pypi/v/bquest.svg
+   :target: https://pypi.org/project/bquest/
+   :alt: PyPI version
+.. image:: https://img.shields.io/pypi/status/bquest.svg
+   :target: https://pypi.python.org/pypi/bquest/
+   :alt: Project status (alpha, beta, stable)
+.. image:: https://static.pepy.tech/personalized-badge/bquest?period=month&units=international_system&left_color=grey&right_color=blue&left_text=PyPI%20downloads/month
+   :target: https://pepy.tech/project/bquest
+   :alt: PyPI downloads
+.. image:: https://img.shields.io/github/license/ottogroup/bquest
+   :target: https://github.com/ottogroup/bquest/blob/main/LICENSE
+   :alt: Project license
+.. image:: https://img.shields.io/pypi/pyversions/bquest.svg
+   :target: https://pypi.python.org/pypi/bquest/
+   :alt: Python version compatibility
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+   :alt: Documentation: Black
+
 Overview
 ********
 
