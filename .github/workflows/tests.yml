@@ -62,4 +62,5 @@ jobs:
         run: poetry run pytest -m unit
 
       - name: Integration tests
+        if: ${{ ! github.event.pull_request.head.repo.fork }}
         run: poetry run pytest -m integration || [[ $? -eq 5 ]]  # allow zero pytest tests if not authed with Google Cloud

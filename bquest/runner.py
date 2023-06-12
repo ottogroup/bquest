@@ -66,6 +66,7 @@ class BaseRunner:
     """Base class for runners"""
 
     def __init__(self, bq_client: bq.Client, project: str, dataset: str = "bquest"):
+        # TODO: project is obsolete and can be taken from bq_client
         self._bq_client = bq_client
         self._bq_table_def_builder = BQTableDefinitionBuilder(project, dataset)
 
@@ -172,7 +173,7 @@ class SQLRunner(BaseRunner):
     def __init__(
         self,
         bq_client: bq.Client,
-        project: str,
+        project: str,  # TODO: project is obsolete and can be taken from bq_client
         dataset: str = "bquest",
         clean_up: bool = True,
     ):
@@ -208,7 +209,7 @@ class SQLRunner(BaseRunner):
             sql_with_substitutions = sql_with_substitutions.replace(key, value)
 
         job_config = bq.QueryJobConfig()
-        query_job = self._bq_client.query(sql_with_substitutions, location="EU", job_config=job_config)
+        query_job = self._bq_client.query(sql_with_substitutions, job_config=job_config)
         query_job.result()
 
         return query_job.result().to_dataframe()

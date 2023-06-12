@@ -3,7 +3,10 @@ from typing import Any
 
 import numpy as np
 import pandas
+import pandas as pd
 from pandas import testing as pd_test
+
+POSSIBLE_INTEGER_DTYPES = (int, pd.Int8Dtype, pd.Int16Dtype, pd.Int32Dtype, pd.Int64Dtype)
 
 
 def standardize_frame_numerics(df: pandas.DataFrame, float_precision: int = 2) -> pandas.DataFrame:
@@ -18,9 +21,10 @@ def standardize_frame_numerics(df: pandas.DataFrame, float_precision: int = 2) -
         Standardized dataframe
     """
     df = df.round(float_precision)
-    for col in df.columns:
-        if df[col].dtype != int:
-            continue
+
+    integer_columns = df.select_dtypes(POSSIBLE_INTEGER_DTYPES).columns
+
+    for col in integer_columns:
         df[col] = df[col].astype(float)
 
     return df.fillna(value=np.nan).reset_index(drop=True)
