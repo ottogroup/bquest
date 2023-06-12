@@ -82,3 +82,17 @@ Example
 *******
 
 TBD
+
+Testing
+*******
+
+For the actual testing bquest relies on an accessible BigQuery project which can be configured
+with the gcloud_ client. The corresponding `GOOGLE_PROJECT_ID` is extracted from this project
+and used with pandas-gbq_ to write temporary tables to the bquest dataset that has to be pre-
+configured before testing on that project.
+
+For Github CI we have configured an identity provider in our testing project which allows
+only core members of this repository to access the testing projects' resources.
+
+.. _gcloud: https://cloud.google.com/sdk/docs/install?hl=de
+.. _pandas-gbq: https://github.com/googleapis/python-bigquery-pandas
