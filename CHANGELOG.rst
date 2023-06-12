@@ -1,3 +1,8 @@
+Development
+***********
+
+- Remove redundant project_id in BQConfigRunner and SQLRunner
+
 0.1.0 (2023-06-12)
 ******************
 

@@ -91,7 +91,7 @@ class TestBQConfigFileRunner:
         bq_client,
     ) -> None:
         runner = BQConfigFileRunner(
-            BQConfigRunner(bq_client, bq_executor_func, GOOGLE_PROJECT_ID),
+            BQConfigRunner(bq_client, bq_executor_func),
             "config/bq_config",
         )
 
@@ -124,7 +124,7 @@ class TestSQLFileRunner:
         """
 
     def test_run_sql_from_file(self, simple_table_definition: BQTableDefinition, simple_sql: Any, bq_client) -> None:
-        runner = SQLFileRunner(SQLRunner(bq_client, GOOGLE_PROJECT_ID), "sql")
+        runner = SQLFileRunner(SQLRunner(bq_client), "sql")
         with patch("builtins.open", mock_open(read_data=simple_sql)) as mock_file:
             result_df = runner.run(
                 "foo.sql",
