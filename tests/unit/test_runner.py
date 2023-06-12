@@ -37,9 +37,6 @@ def simple_bq_config() -> Dict[str, Any]:
 
 
 class TestBQConfigSubstitutor:
-    def setup_method(self) -> None:
-        pass
-
     def test_substitution(self, simple_bq_config: Dict[str, Any]) -> None:
         bq_client = MagicMock()
         source_tables = [
@@ -106,7 +103,7 @@ class TestBQConfigRunner:
         bq_client = MagicMock()
         df = MagicMock()
         bq_client.query().to_dataframe.return_value = df
-        runner = BQConfigRunner(bq_client, MagicMock(), "myproject")
+        runner = BQConfigRunner(bq_client, MagicMock())
 
         result_df = runner.run_config("20190301", "20190308", table_definitions, substitutor)
 
@@ -122,7 +119,7 @@ class TestBQConfigRunner:
         substitutor.substitute.return_value = bq_config
         substitutor.original_feature_table_name = "abc.mytable"
         bq_executor_func = MagicMock()
-        runner = BQConfigRunner(MagicMock(), bq_executor_func, "myproject")
+        runner = BQConfigRunner(MagicMock(), bq_executor_func)
 
         runner.run_config(
             "20190301",
@@ -138,7 +135,7 @@ class TestBQConfigRunner:
         self, simple_bq_config: Dict[str, Any]
     ) -> None:
         substitutor = BQConfigSubstitutor(simple_bq_config, allow_partial=True)
-        runner = BQConfigRunner(MagicMock(), MagicMock(), "myproject", clean_up=False)
+        runner = BQConfigRunner(MagicMock(), MagicMock(), clean_up=False)
         table_def = MagicMock()
         table = MagicMock()
         table_def.load_to_bq.return_value = table
@@ -149,7 +146,7 @@ class TestBQConfigRunner:
 
     def test_run_config_uses_custom_result_table(self) -> None:
         substitutor = MagicMock()
-        runner = BQConfigRunner(MagicMock(), MagicMock(), "myproject")
+        runner = BQConfigRunner(MagicMock(), MagicMock())
         result_table_def = MagicMock()
         result_table = MagicMock()
         result_table_def.load_to_bq.return_value = result_table
