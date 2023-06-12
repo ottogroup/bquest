@@ -1,17 +1,11 @@
-import google.auth as google_auth
 import pandas as pd
 import pytest
-from google.auth.exceptions import DefaultCredentialsError
-from google.cloud import bigquery as bq
 
-from bquest.tables import BQTableDefinitionBuilder
+from tests.integration import GOOGLE_PROJECT_ID
 
 pytestmark = pytest.mark.integration
 
-
-try:
-    _, GOOGLE_PROJECT_ID = google_auth.default()
-except DefaultCredentialsError:
+if not GOOGLE_PROJECT_ID:
     pytest.skip(
         "authentication with Google Cloud required (current active project will be used for tests)",
         allow_module_level=True,
@@ -19,11 +13,8 @@ except DefaultCredentialsError:
 
 
 class TestBigQueryTable:
-    def setup_method(self) -> None:
-        self.table_def_builder = BQTableDefinitionBuilder(GOOGLE_PROJECT_ID, dataset="bquest", location="europe-west1")
-
-    def test_create_and_delete_tables_from_json_definition(self) -> None:
-        table_def = self.table_def_builder.from_json(
+    def test_create_and_delete_tables_from_json_definition(self, table_def_builder, bq_client) -> None:
+        table_def = table_def_builder.from_json(
             "mytable",
             [
                 {
@@ -41,7 +32,7 @@ class TestBigQueryTable:
                 },
             ],
         )
-        table = table_def.load_to_bq(bq.Client(project=GOOGLE_PROJECT_ID))
+        table = table_def.load_to_bq(bq_client)
         try:
             df = table.to_df()
         finally:
@@ -50,10 +41,10 @@ class TestBigQueryTable:
         assert df["name"][0] == "han"
         assert df["name"][1] == "lea"
 
-    def test_create_and_delete_tables_from_dataframe_definition(self) -> None:
+    def test_create_and_delete_tables_from_dataframe_definition(self, table_def_builder, bq_client) -> None:
         df = pd.DataFrame.from_dict({"row_1": ["bar"], "row_2": ["my"]}, orient="index", columns=["foo"])
-        table_def = self.table_def_builder.from_df("mytable", df)
-        table = table_def.load_to_bq(bq.Client(project=GOOGLE_PROJECT_ID))
+        table_def = table_def_builder.from_df("mytable", df)
+        table = table_def.load_to_bq(bq_client)
         try:
             df = table.to_df()
         finally:
