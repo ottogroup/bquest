@@ -65,10 +65,9 @@ class BQConfigSubstitutor:
 class BaseRunner:
     """Base class for runners"""
 
-    def __init__(self, bq_client: bq.Client, project: str, dataset: str = "bquest"):
-        # TODO: project is obsolete and can be taken from bq_client
+    def __init__(self, bq_client: bq.Client, dataset: str = "bquest"):
         self._bq_client = bq_client
-        self._bq_table_def_builder = BQTableDefinitionBuilder(project, dataset)
+        self._bq_table_def_builder = BQTableDefinitionBuilder(bq_client.project, dataset)
 
     def _create_source_tables(self, table_definitions: List[BQTableDefinition]) -> List[BQTable]:
         result = []
@@ -92,11 +91,10 @@ class BQConfigRunner(BaseRunner):
         self,
         bq_client: bq.Client,
         bq_executor_func: Callable[[Dict[str, Any], Optional[Dict[str, str]]], None],
-        project: str,
         dataset: str = "bquest",
         clean_up: bool = True,
     ):
-        super(BQConfigRunner, self).__init__(bq_client, project, dataset)
+        super(BQConfigRunner, self).__init__(bq_client, dataset)
         self._bq_executor_func = bq_executor_func
         self._clean_up = clean_up
 
@@ -173,11 +171,10 @@ class SQLRunner(BaseRunner):
     def __init__(
         self,
         bq_client: bq.Client,
-        project: str,  # TODO: project is obsolete and can be taken from bq_client
         dataset: str = "bquest",
         clean_up: bool = True,
     ):
-        super(SQLRunner, self).__init__(bq_client, project, dataset)
+        super(SQLRunner, self).__init__(bq_client, dataset)
         self._bq_client = bq_client
         self._clean_up = clean_up
 
