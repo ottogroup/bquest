@@ -19,6 +19,7 @@ class TestBigQueryTable:
         mock_uuid_call.return_value = 1234
         table_def = bq_table_def_builder.from_json("mytable", [])
         result = table_def.load_to_bq(bq_client=MagicMock())
+        print(result.test_table_id)
         assert result.test_table_id == "myproject.bquest.mytable_1234"
 
     @patch("uuid.uuid1")
