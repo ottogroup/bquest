@@ -1,6 +1,8 @@
 Development
 ***********
 
+- Add test coverage report
+
 0.2.0 (2023-06-12)
 ******************
 
