@@ -11,3 +11,5 @@ This is a list of the people who directly contributed to bquest in one way or an
 * `Nils Weisbach <https://github.com/ncwhh>`_
 * `Julian Werner <https://github.com/scieneers-jw>`_
 * `Jia-Jen Yang <https://github.com/jiajentw>`_
+
+Special thanks goes to `Mike Czech <https://github.com/mikeczech>`_ who initiated the development of bquest!
