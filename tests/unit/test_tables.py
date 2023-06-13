@@ -10,32 +10,35 @@ pytestmark = pytest.mark.unit
 
 
 class TestBigQueryTable:
-    def setup_method(self) -> None:
-        self.bq_table_def_builder = BQTableDefinitionBuilder("myproject")
+    @pytest.fixture(scope="function")
+    def bq_table_def_builder(self):
+        return BQTableDefinitionBuilder("myproject")
 
     @patch("uuid.uuid1")
-    def test_load_to_bq_returns_table_with_random_name(self, mock_uuid_call: Any) -> None:
+    def test_load_to_bq_returns_table_with_random_name(self, mock_uuid_call: Any, bq_table_def_builder) -> None:
         mock_uuid_call.return_value = 1234
-        table_def = self.bq_table_def_builder.from_json("mytable", [])
+        table_def = bq_table_def_builder.from_json("mytable", [])
         result = table_def.load_to_bq(bq_client=MagicMock())
         assert result.test_table_id == "myproject.bquest.mytable_1234"
 
     @patch("uuid.uuid1")
-    def test_replaces_special_chars_with_underscores_in_table_name_uuid(self, mock_uuid_call: Any) -> None:
+    def test_replaces_special_chars_with_underscores_in_table_name_uuid(
+        self, mock_uuid_call: Any, bq_table_def_builder
+    ) -> None:
         mock_uuid_call.return_value = "123-456"
-        table_def = self.bq_table_def_builder.from_json("abc_mytable$20191224", [])
+        table_def = bq_table_def_builder.from_json("abc_mytable$20191224", [])
         result = table_def.load_to_bq(bq_client=MagicMock())
         assert result.test_table_id == "myproject.bquest.abc_mytable_20191224_123_456"
 
-    def test_load_to_bq_writes_single_row_to_bq(self) -> None:
-        table_def = self.bq_table_def_builder.from_json("mytable", [{"foo": "bar"}])
+    def test_load_to_bq_writes_single_row_to_bq(self, bq_table_def_builder) -> None:
+        table_def = bq_table_def_builder.from_json("mytable", [{"foo": "bar"}])
         bq_client = MagicMock()
         table_def.load_to_bq(bq_client=bq_client)
         bq_json_sources = bq_client.load_table_from_file.call_args_list[0][0][0]
         assert bq_json_sources.getvalue() == b'{"foo": "bar"}'
 
-    def test_load_to_bq_writes_multiple_rows_to_bq(self) -> None:
-        table_def = self.bq_table_def_builder.from_json("mytable", [{"foo": "bar"}, {"foo": "my"}])
+    def test_load_to_bq_writes_multiple_rows_to_bq(self, bq_table_def_builder) -> None:
+        table_def = bq_table_def_builder.from_json("mytable", [{"foo": "bar"}, {"foo": "my"}])
         bq_client = MagicMock()
         table_def.load_to_bq(bq_client=bq_client)
         bq_json_sources = bq_client.load_table_from_file.call_args_list[0][0][0]
@@ -62,10 +65,10 @@ class TestBigQueryTable:
         assert table_reference.project == "project"
 
     @patch("uuid.uuid1")
-    def test_load_to_bq_writes_multiple_rows_from_df(self, mock_uuid_call: Any) -> None:
+    def test_load_to_bq_writes_multiple_rows_from_df(self, mock_uuid_call: Any, bq_table_def_builder) -> None:
         mock_uuid_call.return_value = "1234"
         df = MagicMock()
-        table_def = self.bq_table_def_builder.from_df("abc.mytable", df)
+        table_def = bq_table_def_builder.from_df("abc.mytable", df)
         table_def.load_to_bq(bq_client=MagicMock())
         df.to_gbq.assert_called_with(
             "bquest.abc_mytable_1234",
