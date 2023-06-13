@@ -6,6 +6,8 @@ BQuest
 
 Effortlessly validate and test your Google BigQuery queries with the power of pandas DataFrames in Python.
 
+We would like to thank `Mike Czech <https://github.com/mikeczech>`_ who is the original inventor of bquest!
+
 **Warning**
 
 This library is a work in progress!
