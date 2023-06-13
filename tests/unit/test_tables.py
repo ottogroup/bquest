@@ -10,7 +10,7 @@ pytestmark = pytest.mark.unit
 
 
 class TestBigQueryTable:
-    @pytest.fixture(scope="function")
+    @pytest.fixture
     def bq_table_def_builder(self):
         return BQTableDefinitionBuilder("myproject")
 
@@ -19,7 +19,7 @@ class TestBigQueryTable:
         mock_uuid_call.return_value = 1234
         table_def = bq_table_def_builder.from_json("mytable", [])
         result = table_def.load_to_bq(bq_client=MagicMock())
-        assert result.test_table_id == "myproject.bquest.mytable_1234"
+        assert result.fq_test_table_id == "myproject.bquest.mytable_1234"
 
     @patch("uuid.uuid1")
     def test_replaces_special_chars_with_underscores_in_table_name_uuid(
@@ -28,7 +28,7 @@ class TestBigQueryTable:
         mock_uuid_call.return_value = "123-456"
         table_def = bq_table_def_builder.from_json("abc_mytable$20191224", [])
         result = table_def.load_to_bq(bq_client=MagicMock())
-        assert result.test_table_id == "myproject.bquest.abc_mytable_20191224_123_456"
+        assert result.fq_test_table_id == "myproject.bquest.abc_mytable_20191224_123_456"
 
     def test_load_to_bq_writes_single_row_to_bq(self, bq_table_def_builder) -> None:
         table_def = bq_table_def_builder.from_json("mytable", [{"foo": "bar"}])
@@ -79,4 +79,4 @@ class TestBigQueryTable:
 
     def test_table_definition_name(self) -> None:
         table_def = BQTableDefinition("original_table_name", "abc-project", "dataset", "EU")
-        assert table_def.fq_table_name == f"abc-project.dataset.{table_def.table_name}"
+        assert table_def.fq_table_id == f"abc-project.dataset.{table_def.table_name}"
