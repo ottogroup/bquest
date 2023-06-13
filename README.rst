@@ -41,8 +41,11 @@ Overview
 ********
 
 * Use BQuest in combination with your favorite testing framework (e.g. pytest).
-* Create temporary test tables from [JSON](https://cloud.google.com/bigquery/docs/loading-data) or [Pandas DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html).
+* Create temporary test tables from JSON_ or `pandas DataFrame`_.
 * Run BQ configurations and plain SQL queries on your test tables and check the result.
+
+.. _JSON: https://cloud.google.com/bigquery/docs/loading-data
+.. _pandas DataFrame: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html
 
 Installation
 ************
@@ -81,13 +84,88 @@ test execution.
 Example
 *******
 
-TBD
+Given a pandas DataFrame
+
+.. list-table::
+   :widths: 30 30 30
+   :header-rows: 1
+
+   * - foo
+     - weight
+     - prediction_date
+   * - bar
+     - 23
+     - 20190301
+   * - my
+     - 42
+     - 20190301
+
+and its table definition
+
+.. code-block:: python
+
+    from bquest.tables import BQTableDefinitionBuilder
+
+    table_def_builder = BQTableDefinitionBuilder(GOOGLE_PROJECT_ID, dataset="bquest", location="EU")
+    table_definition = table_def_builder.from_df("abc.feed_latest", df)
+
+you can use the config file *./abc/config.py*
+
+.. code-block:: json-object
+
+    {
+        "class": "abc.loader.BQExecutor",
+        "query": """
+            SELECT
+                foo,
+                PARSE_DATE('%Y%m%d', prediction_date)
+            FROM
+                `{source_table}`
+            WHERE
+                weight > {THRESHOLD}
+        """,
+        "start_date": "prediction_date",
+        "end_date": "prediction_date",
+        "source_tables": {"source_table": "abc.feed_latest"},
+        "feature_table_name": "abc.myid",
+        "export_to": {
+            "target": "BQ",
+            "mode": "upsert",
+            "primary_key": ("prediction_date_id", "random_number"),
+        },
+    }
+
+and the runner
+
+.. code-block:: python
+
+    from bquest.runner import BQConfigFileRunner, BQConfigRunner
+
+    runner = BQConfigFileRunner(
+        BQConfigRunner(bq_client, bq_executor_func),
+        "config/bq_config",
+    )
+
+    result_df = runner.run_config(
+        "20190301",
+        "20190308",
+        [table_definition],
+        "abc/config.py",
+        templating_vars={"THRESHOLD": "30"},
+    )
+
+to assert the result table
+
+.. code-block:: python
+
+    assert result_df.shape == (1, 2)
+    assert result_df.iloc[0]["foo"] == "my"
 
 Testing
 *******
 
 For the actual testing bquest relies on an accessible BigQuery project which can be configured
-with the gcloud_ client. The corresponding `GOOGLE_PROJECT_ID` is extracted from this project
+with the gcloud_ client. The corresponding ``GOOGLE_PROJECT_ID`` is extracted from this project
 and used with pandas-gbq_ to write temporary tables to the bquest dataset that has to be pre-
 configured before testing on that project.
 
@@ -96,3 +174,8 @@ only core members of this repository to access the testing projects' resources.
 
 .. _gcloud: https://cloud.google.com/sdk/docs/install?hl=de
 .. _pandas-gbq: https://github.com/googleapis/python-bigquery-pandas
+
+Important Links
+***************
+
+- Full documentation: https://ottogroup.github.io/bquest/
