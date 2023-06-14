@@ -11,4 +11,8 @@ def is_sql(string: str) -> bool:
     Returns:
         bool if string contains SQL syntax
     """
-    return sqlvalidator.parse(string).is_valid()
+    try:
+        return sqlvalidator.parse(string).is_valid()
+    except Exception:
+        # assume that if parsing fails at some point the string doesn't follow exact SQL syntax
+        return False
