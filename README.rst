@@ -116,7 +116,6 @@ you can use the config file *./abc/config.py*
 .. code-block:: json-object
 
     {
-        "class": "abc.loader.BQExecutor",
         "query": """
             SELECT
                 foo,
@@ -130,11 +129,6 @@ you can use the config file *./abc/config.py*
         "end_date": "prediction_date",
         "source_tables": {"source_table": "abc.feed_latest"},
         "feature_table_name": "abc.myid",
-        "export_to": {
-            "target": "BQ",
-            "mode": "upsert",
-            "primary_key": ("prediction_date_id", "random_number"),
-        },
     }
 
 and the runner
