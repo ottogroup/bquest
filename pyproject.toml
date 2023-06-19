@@ -124,6 +124,8 @@ format = ["black-fix", "isort-fix"]
 black-fix = "black ."
 isort-fix = "ruff --fix --select=I ."
 
+type = "mypy --ignore-missing-imports --strict bquest"
+
 [tool.ruff.per-file-ignores]
 "**/__init__.py" = ["F401"]
 "tests/*" = ["S101"]

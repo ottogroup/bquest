@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional
 
 import google.cloud.bigquery
 import pandas as pd
-from google.api_core import exceptions
+from google.api_core.exceptions import BadRequest
 
 from bquest.util import is_sql
 
@@ -227,9 +227,9 @@ class BQTableJsonDefinition(BQTableDefinition):
         )
         try:
             job.result()
-        except exceptions.BadRequest as e:
+        except BadRequest as e:
             # same error but with full error msg
-            raise exceptions.BadRequest(str(job.errors)) from e
+            raise BadRequest(str(job.errors)) from e  # type: ignore
 
         return BQTable(self._original_table_id, self.fq_table_id, bq_client)
 
