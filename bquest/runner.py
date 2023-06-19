@@ -13,7 +13,7 @@ from bquest.tables import BQTable, BQTableDefinition, BQTableDefinitionBuilder
 class BQConfigSubstitutor:
     """Substitutes parameters inside a BQ configuration"""
 
-    def __init__(self, config: Dict[str, Any], allow_partial: bool = False):
+    def __init__(self, config: Dict[str, Any], allow_partial: Optional[bool] = False):
         self._config = config
         self._allow_partial = allow_partial
 
