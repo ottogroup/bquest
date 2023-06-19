@@ -56,7 +56,7 @@ jobs:
           cache: poetry
 
       - name: Install project
-        run: poetry install --no-interaction --no-root --with=dev
+        run: poetry install --no-interaction --no-root --with=dev,test
 
       - name: Unit tests
         run: poetry run pytest -m unit
