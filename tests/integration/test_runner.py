@@ -43,7 +43,6 @@ class TestBQConfigFileRunner:
     @pytest.fixture
     def simple_bq_config(self) -> object:
         return {
-            "class": "abc.loader.BQExecutor",
             "query": """
                 SELECT
                     foo,
@@ -57,11 +56,6 @@ class TestBQConfigFileRunner:
             "end_date": "prediction_date",
             "source_tables": {"source_table": "abc.feed_latest"},
             "feature_table_name": "abc.myid",
-            "export_to": {
-                "target": "BQ",
-                "mode": "upsert",
-                "primary_key": ("prediction_date_id", "random_number"),
-            },
         }
 
     @pytest.fixture

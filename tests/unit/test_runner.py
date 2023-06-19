@@ -13,7 +13,6 @@ pytestmark = pytest.mark.unit
 def simple_bq_config() -> Dict[str, Any]:
     # TODO: check why query works
     return {
-        "class": "biws_data.loader.BQExecutor",
         "query": """
             SELECT *
             FROM `{source_table}`
@@ -28,11 +27,6 @@ def simple_bq_config() -> Dict[str, Any]:
             "view_table": "abc_views.myview",
         },
         "feature_table_name": "abc.feature_table",
-        "export_to": {
-            "target": "BQ",
-            "mode": "upsert",
-            "primary_key": ("prediction_date_id", "product_number"),
-        },
     }
 
 
