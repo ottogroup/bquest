@@ -22,9 +22,11 @@ extra:
     provider: mike
 
 nav:
-  - Introduction: index.md
+  - Introduction: ../README.md
   - Getting Started: getting-started.md
   - Reference:
     - Dataframe: reference/dataframe.md
     - Runner: reference/runner.md
     - Tables: reference/tables.md
+  - Contributors: ../CONTRIBUTORS.md
+  - Changelog: ../CHANGELOG.md
