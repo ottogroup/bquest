@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bquest"
-version = "0.3.0"
+version = "0.3.1"
 description = "Effortlessly validate and test your Google BigQuery queries with the power of pandas DataFrames in Python."
 authors = ["Otto Group data.works GmbH"]
 license = "Apache Software License"
@@ -51,7 +51,7 @@ python = "^3.10"
 
 google-cloud-bigquery   = { version = "^3.8", extras = ["bqstorage", "pandas"] }
 pandas                  = "^2.0"
-pandas-gbq              = "^0.18"
+pandas-gbq              = "^0.19"
 sqlvalidator            = "^0.0.20"
 
 [tool.poetry.group.dev]
