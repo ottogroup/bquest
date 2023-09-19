@@ -1,6 +1,12 @@
 Development
 ***********
 
+0.3.2 (2023-09-19)
+******************
+
+- Add condition for string substitution so that empty substitutions together with sqls,
+  that contain curly brackets won't fail
+
 0.3.1 (2023-08-15)
 ******************
 

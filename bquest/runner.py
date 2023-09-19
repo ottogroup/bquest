@@ -201,6 +201,8 @@ class SQLRunner(BaseRunner):
             sql: SQL query that is being executed in BigQuery
             source_table_definitions: source table definitions, list of BQTableDefinition
             substitutions: substitutions for the given query
+            Can't use substitutions together with sql that contains curly brackets, for example sql with regexs.
+            This leads to error when trying to substitute the regex which shouldn't be substituted.
             string_replacements: entire string replacements for the query, substitutions are placed before
             result_table_definition: result table definition
 
@@ -219,8 +221,8 @@ class SQLRunner(BaseRunner):
             if result_table_definition
             else self._create_empty_result_table("result")
         )
-
-        sql_with_substitutions = sql.format(**substitutions)
+        if substitutions:
+            sql_with_substitutions = sql.format(**substitutions)
         for key, value in string_replacements.items():
             sql_with_substitutions = sql_with_substitutions.replace(key, value)
 
