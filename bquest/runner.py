@@ -209,6 +209,7 @@ class SQLRunner(BaseRunner):
         Returns:
             pandas DataFrame of result table
         """
+
         if substitutions is None:
             substitutions = {}
 
@@ -221,8 +222,7 @@ class SQLRunner(BaseRunner):
             if result_table_definition
             else self._create_empty_result_table("result")
         )
-        if substitutions:
-            sql_with_substitutions = sql.format(**substitutions)
+        sql_with_substitutions = sql.format(**substitutions) if substitutions else sql
         for key, value in string_replacements.items():
             sql_with_substitutions = sql_with_substitutions.replace(key, value)
 

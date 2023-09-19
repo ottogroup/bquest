@@ -1,6 +1,11 @@
 Development
 ***********
 
+0.4.0 (2023-09-19)
+******************
+
+- fix version 0.3.2 by adding default case for sql_with_substitutions
+
 0.3.2 (2023-09-19)
 ******************
 
