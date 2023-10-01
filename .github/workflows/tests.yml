@@ -36,7 +36,7 @@ jobs:
     name: Python ${{ matrix.python-version }} on OS ${{ matrix.os }}
     steps:
       - name: Acquire sources
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Google Auth
         uses: google-github-actions/auth@v1
