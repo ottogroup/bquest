@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bquest"
-version = "0.4.1"
+version = "0.5.0"
 description = "Effortlessly validate and test your Google BigQuery queries with the power of pandas DataFrames in Python."
 authors = ["Otto Group data.works GmbH"]
 license = "Apache Software License"
@@ -127,7 +127,6 @@ lint = [
 format = [
     { cmd = "ruff format bquest tests" },
     { cmd = "ruff check --fix bquest tests" },
-
 ]
 
 type = "mypy --ignore-missing-imports --strict bquest"
