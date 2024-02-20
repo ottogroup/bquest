@@ -59,8 +59,8 @@ jobs:
         run: poetry install --no-interaction --no-root --with=dev,test
 
       - name: Unit tests
-        run: poetry run pytest -m unit
+        run: poetry run poe test_unit
 
       - name: Integration tests
         if: ${{ ! github.event.pull_request.head.repo.fork }}
-        run: poetry run pytest -m integration || [[ $? -eq 5 ]]  # allow zero pytest tests if not authed with Google Cloud
+        run: poetry run poe test_integration || [[ $? -eq 5 ]]  # allow zero pytest tests if not authed with Google Cloud
