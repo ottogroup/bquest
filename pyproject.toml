@@ -59,7 +59,6 @@ sqlvalidator            = "^0.0.20"
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-black                   = "^22.10.0"
 mypy                    = "^1.3.0"
 poethepoet              = "^0.20.0"
 ruff                    = "^0.2.2"
@@ -83,12 +82,10 @@ mkdocs                  = "^1.4.3"
 mkdocs-material         = "^9.1.15"
 mkdocstrings-python     = "^1.1.2"
 
-[tool.black]
-line-length = 120
-
 [tool.ruff]
 line-length = 120
 
+[tool.ruff.lint]
 select = [
     # Bandit
     "S",
@@ -114,26 +111,30 @@ select = [
     # return
     "RET",
 ]
+unfixable = ["ERA", "F401", "F841", "T20", "ERA001"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["F401"]
+"tests/*" = ["S101"]
 
 [tool.poe.tasks]
 # Linting and formatting.
-lint = ["ruff", "black-check"]
-ruff = "ruff ."
-black-check = "black --check ."
+lint = [
+    { cmd = "ruff check ." },
+    { cmd = "ruff format --check bquest tests" },
+]
 
-format = ["black-fix", "isort-fix"]
-black-fix = "black ."
-isort-fix = "ruff --fix --select=I ."
+format = [
+    { cmd = "ruff format bquest tests" },
+    { cmd = "ruff check --fix bquest tests" },
+
+]
 
 type = "mypy --ignore-missing-imports --strict bquest"
 
 test_unit = "pytest -m unit"
 test_integration = "pytest -m integration"
 test = ["test_unit", "test_integration"]
-
-[tool.ruff.per-file-ignores]
-"**/__init__.py" = ["F401"]
-"tests/*" = ["S101"]
 
 [tool.pytest.ini_options]
 log_level = "DEBUG"
