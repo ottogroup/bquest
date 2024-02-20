@@ -127,6 +127,10 @@ isort-fix = "ruff --fix --select=I ."
 
 type = "mypy --ignore-missing-imports --strict bquest"
 
+test_unit = "pytest -m unit"
+test_integration = "pytest -m integration"
+test = ["test_unit", "test_integration"]
+
 [tool.ruff.per-file-ignores]
 "**/__init__.py" = ["F401"]
 "tests/*" = ["S101"]
