@@ -2,6 +2,7 @@ Development
 ***********
 
 - support Python 3.12
+- replace `^` by `>=` in dependency specifications
 
 0.4.1 (2023-11-21)
 ******************
