@@ -20,7 +20,7 @@ jobs:
     name: Check code coverage
     env:
       OS: "ubuntu-latest"
-      PYTHON: "3.11"
+      PYTHON: "3.12"
     steps:
       - name: Acquire sources
         uses: actions/checkout@v4
