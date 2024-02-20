@@ -1,0 +1,2703 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../runner/">
+      
+      
+      
+      <link rel="icon" href="../../assets/icon.svg">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+    
+    
+      
+        <title>Tables - BQuest</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bquest.tables" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BQuest" class="md-header__button md-logo" aria-label="BQuest" data-md-component="logo">
+      
+  <img src="../../assets/icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BQuest
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ottogroup/bquest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ottogroup/bquest
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BQuest" class="md-nav__button md-logo" aria-label="BQuest" data-md-component="logo">
+      
+  <img src="../../assets/icon.svg" alt="logo">
+
+    </a>
+    BQuest
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ottogroup/bquest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ottogroup/bquest
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataframe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dataframe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tables
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Tables
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.fq_test_table_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      fq_test_table_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.original_table_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      original_table_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.remove_require_partition_filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      remove_require_partition_filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.to_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_df
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDataframeDefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableDataframeDefinition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableDataframeDefinition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDataframeDefinition.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDataframeDefinition.load_to_bq" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_to_bq
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableDefinition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableDefinition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinition.fq_table_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      fq_table_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinition.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinitionBuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableDefinitionBuilder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableDefinitionBuilder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinitionBuilder.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableJsonDefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableJsonDefinition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableJsonDefinition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableJsonDefinition.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableJsonDefinition.load_to_bq" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_to_bq
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      tables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.fq_test_table_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      fq_test_table_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.original_table_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      original_table_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.remove_require_partition_filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      remove_require_partition_filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTable.to_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_df
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDataframeDefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableDataframeDefinition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableDataframeDefinition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDataframeDefinition.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDataframeDefinition.load_to_bq" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_to_bq
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableDefinition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableDefinition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinition.fq_table_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      fq_table_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinition.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinitionBuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableDefinitionBuilder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableDefinitionBuilder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableDefinitionBuilder.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableJsonDefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      BQTableJsonDefinition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BQTableJsonDefinition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableJsonDefinition.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bquest.tables.BQTableJsonDefinition.load_to_bq" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_to_bq
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Tables</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="bquest.tables"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Module for dealing with BigQueryTables</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bquest.tables.BQTable" class="doc doc-heading">
+          <code>BQTable</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Represents a BigQuery table.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>bquest/tables.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a BigQuery table.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fq_test_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            original_table_id: original table id</span>
+<span class="sd">            fq_test_table_id: full qualified test table id</span>
+<span class="sd">            bq_client: BigQuery client used for interacting with BigQuery</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">original_table_id</span> <span class="o">==</span> <span class="n">fq_test_table_id</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;original_table_id&#39; and &#39;fq_test_table_id&#39; can&#39;t be the same.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">is_sql</span><span class="p">(</span><span class="n">fq_test_table_id</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;test_table_id&#39; contains sql syntax.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span> <span class="o">=</span> <span class="n">original_table_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span> <span class="o">=</span> <span class="n">fq_test_table_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span> <span class="o">=</span> <span class="n">bq_client</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">original_table_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the original table identifier (e.g. bquest.example_id)&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fq_test_table_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the table identifier used for testing (e.g. bquest.example_id)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span>
+
+    <span class="k">def</span> <span class="nf">remove_require_partition_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to drop table partition filter requirement</span>
+<span class="sd">        Args:</span>
+<span class="sd">            table_id: table id</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None - table settings updated in place</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="n">table_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;requirePartitionFilter&quot;</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">to_api_repr</span><span class="p">():</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">require_partition_filter</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">update_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;require_partition_filter&quot;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads the table into a dataframe</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Loaded table as pandas dataframe</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_require_partition_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span><span class="p">)</span>
+
+        <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span><span class="si">}</span><span class="s2">`&quot;</span>  <span class="c1"># noqa: S608, SQL injection prevented in init</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deletes the table&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">delete_table</span><span class="p">(</span><span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">TableReference</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bquest.tables.BQTable.fq_test_table_id" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">fq_test_table_id</span><span class="p">:</span> <span class="nb">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the table identifier used for testing (e.g. bquest.example_id)</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bquest.tables.BQTable.original_table_id" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the original table identifier (e.g. bquest.example_id)</p>
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTable.__init__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">fq_test_table_id</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>original_table_id</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>original table id</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>fq_test_table_id</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>full qualified test table id</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>bq_client</code></td>
+          <td>
+                <code><span title="google.cloud.bigquery.Client">Client</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>BigQuery client used for interacting with BigQuery</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fq_test_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        original_table_id: original table id</span>
+<span class="sd">        fq_test_table_id: full qualified test table id</span>
+<span class="sd">        bq_client: BigQuery client used for interacting with BigQuery</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">original_table_id</span> <span class="o">==</span> <span class="n">fq_test_table_id</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;original_table_id&#39; and &#39;fq_test_table_id&#39; can&#39;t be the same.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">is_sql</span><span class="p">(</span><span class="n">fq_test_table_id</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;test_table_id&#39; contains sql syntax.&quot;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span> <span class="o">=</span> <span class="n">original_table_id</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span> <span class="o">=</span> <span class="n">fq_test_table_id</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span> <span class="o">=</span> <span class="n">bq_client</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTable.delete" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">delete</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Deletes the table</p>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deletes the table&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">delete_table</span><span class="p">(</span><span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">TableReference</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTable.remove_require_partition_filter" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">remove_require_partition_filter</span><span class="p">(</span><span class="n">table_id</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Method to drop table partition filter requirement
+Args:
+    table_id: table id</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>None - table settings updated in place</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">remove_require_partition_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Method to drop table partition filter requirement</span>
+<span class="sd">    Args:</span>
+<span class="sd">        table_id: table id</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None - table settings updated in place</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="n">table_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;requirePartitionFilter&quot;</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">to_api_repr</span><span class="p">():</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">require_partition_filter</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">update_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;require_partition_filter&quot;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTable.to_df" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">to_df</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Loads the table into a dataframe</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Loaded table as pandas dataframe</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads the table into a dataframe</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Loaded table as pandas dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">remove_require_partition_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span><span class="p">)</span>
+
+    <span class="n">sql</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_fq_test_table_id</span><span class="si">}</span><span class="s2">`&quot;</span>  <span class="c1"># noqa: S608, SQL injection prevented in init</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bq_client</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bquest.tables.BQTableDataframeDefinition" class="doc doc-heading">
+          <code>BQTableDataframeDefinition</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="bquest.tables.BQTableDefinition" href="#bquest.tables.BQTableDefinition">BQTableDefinition</a></code></p>
+
+  
+      <p>Defines BigQuery tables based on a pandas dataframe.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>bquest/tables.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDataframeDefinition</span><span class="p">(</span><span class="n">BQTableDefinition</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines BigQuery tables based on a pandas dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            original_table_id: table name</span>
+<span class="sd">            df: pandas DataFrame that is loaded</span>
+<span class="sd">            project: Google Cloud project id</span>
+<span class="sd">            dataset: dataset name e.g. bquest</span>
+<span class="sd">            location: location of dataset e.g. EU</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_df</span> <span class="o">=</span> <span class="n">df</span>
+
+    <span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads this definition to a BigQuery table.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            bq_client: A BigQuery client</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            BQTable: A representative of the BigQuery table which was created.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_df</span><span class="o">.</span><span class="n">to_gbq</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">location</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">,</span>
+            <span class="n">project_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
+            <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">BQTable</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fq_table_id</span><span class="p">,</span>
+            <span class="n">bq_client</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTableDataframeDefinition.__init__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>original_table_id</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>table name</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>df</code></td>
+          <td>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>pandas DataFrame that is loaded</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>project</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Google Cloud project id</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>dataset</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>dataset name e.g. bquest</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>location</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>location of dataset e.g. EU</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        original_table_id: table name</span>
+<span class="sd">        df: pandas DataFrame that is loaded</span>
+<span class="sd">        project: Google Cloud project id</span>
+<span class="sd">        dataset: dataset name e.g. bquest</span>
+<span class="sd">        location: location of dataset e.g. EU</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_df</span> <span class="o">=</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTableDataframeDefinition.load_to_bq" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">load_to_bq</span><span class="p">(</span><span class="n">bq_client</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Loads this definition to a BigQuery table.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>bq_client</code></td>
+          <td>
+                <code><span title="google.cloud.bigquery.Client">Client</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A BigQuery client</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>BQTable</code></td>          <td>
+                <code><a class="autorefs autorefs-internal" title="bquest.tables.BQTable" href="#bquest.tables.BQTable">BQTable</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A representative of the BigQuery table which was created.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads this definition to a BigQuery table.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        bq_client: A BigQuery client</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        BQTable: A representative of the BigQuery table which was created.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_df</span><span class="o">.</span><span class="n">to_gbq</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">location</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">,</span>
+        <span class="n">project_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
+        <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">BQTable</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fq_table_id</span><span class="p">,</span>
+        <span class="n">bq_client</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bquest.tables.BQTableDefinition" class="doc doc-heading">
+          <code>BQTableDefinition</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Base class for BigQuery table definitions.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>bquest/tables.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDefinition</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for BigQuery table definitions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: table name</span>
+<span class="sd">            project: Google Cloud project id</span>
+<span class="sd">            dataset: dataset name e.g. bquest</span>
+<span class="sd">            location: location of dataset e.g. EU</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span> <span class="o">=</span> <span class="n">original_table_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_location</span> <span class="o">=</span> <span class="n">location</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">original_table_id</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">table_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fq_table_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the fully qualified table name in the form</span>
+<span class="sd">        {project_name}.{dataset}.{table_name}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BQTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fq_table_id</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bquest.tables.BQTableDefinition.fq_table_id" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">fq_table_id</span><span class="p">:</span> <span class="nb">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the fully qualified table name in the form
+{project_name}.{dataset}.{table_name}</p>
+  </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTableDefinition.__init__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>name</code></td>
+          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>table name</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>project</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Google Cloud project id</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>dataset</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>dataset name e.g. bquest</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>location</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>location of dataset e.g. EU</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name: table name</span>
+<span class="sd">        project: Google Cloud project id</span>
+<span class="sd">        dataset: dataset name e.g. bquest</span>
+<span class="sd">        location: location of dataset e.g. EU</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span> <span class="o">=</span> <span class="n">original_table_id</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_location</span> <span class="o">=</span> <span class="n">location</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_test_table_id</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">original_table_id</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;{&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bquest.tables.BQTableDefinitionBuilder" class="doc doc-heading">
+          <code>BQTableDefinitionBuilder</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Helper class for building BQTableDefinitions</p>
+
+            <details class="quote">
+              <summary>Source code in <code>bquest/tables.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableDefinitionBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper class for building BQTableDefinitions&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;bquest&quot;</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;EU&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            project: Google Cloud project</span>
+<span class="sd">            dataset: BigQuery dataset e.g. bquest</span>
+<span class="sd">            location: location of dataset e.g. EU</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_location</span> <span class="o">=</span> <span class="n">location</span>
+
+    <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">SchemaField</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTableJsonDefinition</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BQTableJsonDefinition</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTableDataframeDefinition</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BQTableDataframeDefinition</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTableDefinition</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BQTableDefinition</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTableDefinitionBuilder.__init__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="s1">&#39;bquest&#39;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;EU&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>project</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Google Cloud project</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>dataset</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>BigQuery dataset e.g. bquest</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;bquest&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>location</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>location of dataset e.g. EU</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;EU&#39;</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;bquest&quot;</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;EU&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        project: Google Cloud project</span>
+<span class="sd">        dataset: BigQuery dataset e.g. bquest</span>
+<span class="sd">        location: location of dataset e.g. EU</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_location</span> <span class="o">=</span> <span class="n">location</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bquest.tables.BQTableJsonDefinition" class="doc doc-heading">
+          <code>BQTableJsonDefinition</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="bquest.tables.BQTableDefinition" href="#bquest.tables.BQTableDefinition">BQTableDefinition</a></code></p>
+
+  
+      <p>Defines BigQuery tables based on a JSON format.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>bquest/tables.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BQTableJsonDefinition</span><span class="p">(</span><span class="n">BQTableDefinition</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines BigQuery tables based on a JSON format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">SchemaField</span><span class="p">]],</span>
+        <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            original_table_id: table name</span>
+<span class="sd">            rows: json-like rows</span>
+<span class="sd">            schema: schema of the data</span>
+<span class="sd">            project: Google Cloud project</span>
+<span class="sd">            dataset: dataset name e.g. bquest</span>
+<span class="sd">            location: location of dataset e.g. EU</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rows_json_sources</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_rows_to_bq_json_format</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span> <span class="o">=</span> <span class="n">schema</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_convert_rows_to_bq_json_format</span><span class="p">(</span><span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">BytesIO</span><span class="p">:</span>
+        <span class="n">rows_as_json</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">BytesIO</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rows_as_json</span><span class="p">),</span> <span class="s2">&quot;ascii&quot;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_create_bq_load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">LoadJobConfig</span><span class="p">:</span>
+        <span class="n">load_config</span> <span class="o">=</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">LoadJobConfig</span><span class="p">()</span>
+        <span class="n">load_config</span><span class="o">.</span><span class="n">source_format</span> <span class="o">=</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">SourceFormat</span><span class="o">.</span><span class="n">NEWLINE_DELIMITED_JSON</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span><span class="p">:</span>
+            <span class="n">load_config</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span>
+            <span class="n">load_config</span><span class="o">.</span><span class="n">autodetect</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">load_config</span><span class="o">.</span><span class="n">autodetect</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">load_config</span>
+
+    <span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads this definition to a BigQuery table.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            bq_client: BigQuery client for interacting with BigQuery</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            BQTable: A representative of the BigQuery table which was created.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">job</span> <span class="o">=</span> <span class="n">bq_client</span><span class="o">.</span><span class="n">load_table_from_file</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rows_json_sources</span><span class="p">,</span>
+            <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">TableReference</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fq_table_id</span><span class="p">),</span>
+            <span class="n">location</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">,</span>
+            <span class="n">job_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_create_bq_load_config</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">BadRequest</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># same error but with full error msg</span>
+            <span class="k">raise</span> <span class="n">BadRequest</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">errors</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">e</span>  <span class="c1"># type: ignore</span>
+
+        <span class="k">return</span> <span class="n">BQTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fq_table_id</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTableJsonDefinition.__init__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>original_table_id</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>table name</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>rows</code></td>
+          <td>
+                <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>json-like rows</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>schema</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="google.cloud.bigquery.SchemaField">SchemaField</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>schema of the data</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>project</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Google Cloud project</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>dataset</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>dataset name e.g. bquest</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>location</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>location of dataset e.g. EU</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">original_table_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">SchemaField</span><span class="p">]],</span>
+    <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        original_table_id: table name</span>
+<span class="sd">        rows: json-like rows</span>
+<span class="sd">        schema: schema of the data</span>
+<span class="sd">        project: Google Cloud project</span>
+<span class="sd">        dataset: dataset name e.g. bquest</span>
+<span class="sd">        location: location of dataset e.g. EU</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">original_table_id</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">location</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_rows_json_sources</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_rows_to_bq_json_format</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_schema</span> <span class="o">=</span> <span class="n">schema</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="bquest.tables.BQTableJsonDefinition.load_to_bq" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">load_to_bq</span><span class="p">(</span><span class="n">bq_client</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Loads this definition to a BigQuery table.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>bq_client</code></td>
+          <td>
+                <code><span title="google.cloud.bigquery.Client">Client</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>BigQuery client for interacting with BigQuery</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>BQTable</code></td>          <td>
+                <code><a class="autorefs autorefs-internal" title="bquest.tables.BQTable" href="#bquest.tables.BQTable">BQTable</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A representative of the BigQuery table which was created.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>bquest/tables.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_to_bq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">Client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BQTable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads this definition to a BigQuery table.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        bq_client: BigQuery client for interacting with BigQuery</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        BQTable: A representative of the BigQuery table which was created.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">bq_client</span><span class="o">.</span><span class="n">load_table_from_file</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rows_json_sources</span><span class="p">,</span>
+        <span class="n">google</span><span class="o">.</span><span class="n">cloud</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">TableReference</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fq_table_id</span><span class="p">),</span>
+        <span class="n">location</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_location</span><span class="p">,</span>
+        <span class="n">job_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_create_bq_load_config</span><span class="p">(),</span>
+    <span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">BadRequest</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># same error but with full error msg</span>
+        <span class="k">raise</span> <span class="n">BadRequest</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">errors</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">e</span>  <span class="c1"># type: ignore</span>
+
+    <span class="k">return</span> <span class="n">BQTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original_table_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fq_table_id</span><span class="p">,</span> <span class="n">bq_client</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+<!-- Footer -->
+<footer class="md-footer">
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        Copyright &copy; 2023 Otto Group data.works GmbH
+      </div>
+
+      <!-- Social links -->
+      <div class="md-social">
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  </body>
+</html>
