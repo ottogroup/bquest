@@ -1,4 +1,5 @@
-""" Helpers for dealing with pandas.DataFrames """
+"""Helpers for dealing with pandas.DataFrames"""
+
 from typing import Any
 
 import numpy as np

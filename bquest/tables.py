@@ -1,4 +1,5 @@
 """Module for dealing with BigQueryTables"""
+
 import json
 import uuid
 from io import BytesIO
