@@ -1,4 +1,4 @@
-name: Lint
+name: Static code checks
 
 permissions:
     id-token: write
@@ -19,7 +19,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  lint:
+  static-checks:
     runs-on: ubuntu-latest
     strategy:
       matrix:
