@@ -26,6 +26,7 @@ jobs:
         lint_command:
           - poe lint
           - pip-audit
+          - creosote
     steps:
       - name: Acquire sources
         uses: actions/checkout@v4
