@@ -21,6 +21,11 @@ concurrency:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        lint_command:
+          - poe lint
+          - pip-audit
     steps:
       - name: Acquire sources
         uses: actions/checkout@v4
@@ -28,4 +33,4 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - name: Run code-style checks
-        run: uv run poe lint
+        run: uv run ${{ matrix.lint_command }}
