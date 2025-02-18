@@ -21,21 +21,14 @@ jobs:
 
       - run: git fetch origin gh-pages:gh-pages
 
-      - name: Install Poetry
-        run: pipx install poetry
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          architecture: x64
-          cache: poetry
+      - uses: astral-sh/setup-uv@v5
+          
       - name: Configure Git user
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-      - run: poetry install --only docs
-      - run: poetry run mike deploy v$(poetry version --short) latest --update-aliases --push
+      - run: uv sync --only-group docs
+      - run: uv run mike deploy v$(uvx --from=toml-cli toml get --toml-path=pyproject.toml project.version) latest --update-aliases --push
 
   release:
     runs-on: ubuntu-latest
@@ -43,18 +36,10 @@ jobs:
       - name: Acquire sources
         uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: pipx install poetry
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          architecture: x64
-          cache: poetry
+      - uses: astral-sh/setup-uv@v5
 
       - name: Build
-        run: poetry build
+        run: uv build
 
       - name: Publish
-        run: poetry publish --username=__token__ --password=${{ secrets.PYPI_TOKEN }}
+        run: uv publish

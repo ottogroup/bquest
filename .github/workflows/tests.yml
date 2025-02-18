@@ -45,22 +45,14 @@ jobs:
           service_account: bquest-sa@${{ secrets.GOOGLE_PROJECT_ID }}.iam.gserviceaccount.com
           project_id: ${{ secrets.GOOGLE_PROJECT_ID }}
 
-      - name: Setup Poetry
-        run: pipx install poetry
-
-      - name: Setup python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          architecture: x64
-          cache: poetry
+      - uses: astral-sh/setup-uv@v5
 
       - name: Install project
-        run: poetry install --no-interaction --no-root --with=dev,test
+        run: uv sync --frozen --group test
 
       - name: Unit tests
-        run: poetry run poe test_unit
+        run: uv run poe test_unit
 
       - name: Integration tests
         if: ${{ ! github.event.pull_request.head.repo.fork }}
-        run: poetry run poe test_integration || [[ $? -eq 5 ]]  # allow zero pytest tests if not authed with Google Cloud
+        run: uv run poe test_integration || [[ $? -eq 5 ]]  # allow zero pytest tests if not authed with Google Cloud
