@@ -16,14 +16,18 @@ concurrency:
 
 jobs:
   run:
-    runs-on: ubuntu-latest
     name: Check code coverage
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       OS: "ubuntu-latest"
       PYTHON: "3.12"
     steps:
       - name: Acquire sources
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: astral-sh/setup-uv@v5
 
