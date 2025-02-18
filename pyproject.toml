@@ -51,6 +51,7 @@ Releases = "https://github.com/ottogroup/bquest/releases"
 
 [dependency-groups]
 dev = [
+    "creosote>=4.0.0",
     "mypy>=1.3.0",
     "pip-audit>=2.8.0",
     "poethepoet>=0.20.0",
@@ -165,3 +166,10 @@ fail_under = 0
 omit = [
     "tests/*",
 ]
+
+[tool.creosote]
+venvs=[".venv"]
+paths=["bquest", "tests"]
+deps-file="pyproject.toml"
+sections=["project.dependencies"]
+exclude-deps=["pandas-gbq"]
