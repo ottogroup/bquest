@@ -25,23 +25,15 @@ jobs:
       - name: Acquire sources
         uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: pipx install poetry
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          architecture: x64
-          cache: poetry
+      - uses: astral-sh/setup-uv@v5
 
       - name: Install project
-        run: poetry install --no-interaction --no-root --with=dev,test
+        run: uv sync --frozen --with test
 
       - name: Run tests, with coverage
         run: |
-          poetry run pytest --cov=bquest tests/
-          poetry run coverage xml
+          uv run pytest --cov=bquest tests/
+          uv run coverage xml
 
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v4
