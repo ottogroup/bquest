@@ -32,7 +32,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - name: Install project
-        run: uv sync --frozen --with test
+        run: uv sync --frozen --group test
 
       - name: Run tests, with coverage
         run: |
