@@ -5,7 +5,7 @@ description = "Effortlessly validate and test your Google BigQuery queries with 
 authors = [{ name = "Otto Group data.works GmbH" }]
 requires-python = ">=3.10,<4.0"
 readme = "README.rst"
-license = "Apache Software License"
+license = "Apache-2.0"
 keywords = [
     "open-source",
     "google-big-query",
