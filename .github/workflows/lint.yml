@@ -27,6 +27,7 @@ jobs:
           - poe lint
           - pip-audit
           - creosote
+          - zizmor .github/workflows/
     steps:
       - name: Acquire sources
         uses: actions/checkout@v4
