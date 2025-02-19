@@ -23,11 +23,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        lint_command:
-          - poe lint
-          - pip-audit
-          - creosote
-          - zizmor .github/workflows/
+        check_command:
+          - lint
+          - check_vulnerable_dependencies
+          - check_unused_dependencies
+          - check_githubactions
     steps:
       - name: Acquire sources
         uses: actions/checkout@v4
@@ -37,4 +37,4 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - name: Run code-style checks
-        run: uv run ${{ matrix.lint_command }}
+        run: uv run poe ${{ matrix.check_command }}

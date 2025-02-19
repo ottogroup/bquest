@@ -145,6 +145,11 @@ format = [
 
 type = "mypy --ignore-missing-imports --strict bquest"
 
+check_vulnerable_dependencies = "pip-audit"
+check_unused_dependencies = "creosote"
+check_githubactions = "zizmor .github/workflows/"
+
+
 test_unit = "pytest -m unit"
 test_integration = "pytest -m integration"
 test = ["test_unit", "test_integration"]
