@@ -82,12 +82,14 @@ required-version=">=0.6.0"
 
 [tool.hatch.build.targets.sdist]
 include = [
+    "bquest",
     "LICENSE",
     "CHANGELOG.rst",
 ]
 
 [tool.hatch.build.targets.wheel]
 include = [
+    "bquest",
     "LICENSE",
     "CHANGELOG.rst",
 ]
