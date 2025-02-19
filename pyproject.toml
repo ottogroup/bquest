@@ -1,6 +1,6 @@
 [project]
 name = "bquest"
-version = "0.5.2"
+version = "0.5.3"
 description = "Effortlessly validate and test your Google BigQuery queries with the power of pandas DataFrames in Python."
 authors = [{ name = "Otto Group data.works GmbH" }]
 requires-python = ">=3.10,<4.0"
