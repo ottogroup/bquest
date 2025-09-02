@@ -41,7 +41,7 @@ jobs:
           persist-credentials: false
 
       - name: Google Auth
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ secrets.GOOGLE_IDENTITY_PROVIDER }}
           service_account: bquest-sa@${{ secrets.GOOGLE_PROJECT_ID }}.iam.gserviceaccount.com
