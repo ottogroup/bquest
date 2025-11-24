@@ -30,7 +30,7 @@ jobs:
           - check_githubactions
     steps:
       - name: Acquire sources
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
