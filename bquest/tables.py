@@ -97,7 +97,7 @@ class BQTableDefinition:
         self._dataset = dataset
         self._location = location
         self._test_table_id = (
-            f"{original_table_id}_{str(uuid.uuid1())}".replace("-", "_")
+            f"{original_table_id}_{str(uuid.uuid4())}".replace("-", "_")
             .replace(".", "_")
             .replace("{", "_")
             .replace("}", "_")
