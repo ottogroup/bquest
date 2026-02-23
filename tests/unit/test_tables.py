@@ -23,7 +23,7 @@ class TestBigQueryTable:
 
     @patch("uuid.uuid4")
     def test_replaces_special_chars_with_underscores_in_table_name_uuid(
-            self, mock_uuid_call: Any, bq_table_def_builder
+        self, mock_uuid_call: Any, bq_table_def_builder
     ) -> None:
         mock_uuid_call.return_value = "123-456"
         table_def = bq_table_def_builder.from_json("abc_mytable$20191224", [])
@@ -66,8 +66,9 @@ class TestBigQueryTable:
 
     @patch("pandas_gbq.to_gbq")
     @patch("uuid.uuid4")
-    def test_load_to_bq_writes_multiple_rows_from_df(self, mock_uuid_call: Any, mock_to_gbq_call: Any,
-                                                     bq_table_def_builder) -> None:
+    def test_load_to_bq_writes_multiple_rows_from_df(
+        self, mock_uuid_call: Any, mock_to_gbq_call: Any, bq_table_def_builder
+    ) -> None:
         mock_uuid_call.return_value = "1234"
         df = MagicMock()
         table_def = bq_table_def_builder.from_df("abc.mytable", df)

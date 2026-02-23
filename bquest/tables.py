@@ -156,11 +156,13 @@ class BQTableDataframeDefinition(BQTableDefinition):
         Returns:
             BQTable: A representative of the BigQuery table which was created.
         """
-        pd_gbq.to_gbq(self._df,
-                      destination_table=f"{self._dataset}.{self.table_name}",
-                      project_id=self._project,
-                      location=self._location,
-                      if_exists="replace")
+        pd_gbq.to_gbq(
+            self._df,
+            destination_table=f"{self._dataset}.{self.table_name}",
+            project_id=self._project,
+            location=self._location,
+            if_exists="replace",
+        )
         return BQTable(
             self._original_table_id,
             self.fq_table_id,
@@ -174,13 +176,13 @@ class BQTableJsonDefinition(BQTableDefinition):
     """
 
     def __init__(
-            self,
-            original_table_id: str,
-            rows: List[Dict[str, Any]],
-            schema: Optional[List[google.cloud.bigquery.SchemaField]],
-            project: str,
-            dataset: str,
-            location: str,
+        self,
+        original_table_id: str,
+        rows: List[Dict[str, Any]],
+        schema: Optional[List[google.cloud.bigquery.SchemaField]],
+        project: str,
+        dataset: str,
+        location: str,
     ) -> None:
         """
 
@@ -251,10 +253,10 @@ class BQTableDefinitionBuilder:
         self._location = location
 
     def from_json(
-            self,
-            name: str,
-            rows: List[Dict[str, Any]],
-            schema: Optional[List[google.cloud.bigquery.SchemaField]] = None,
+        self,
+        name: str,
+        rows: List[Dict[str, Any]],
+        schema: Optional[List[google.cloud.bigquery.SchemaField]] = None,
     ) -> BQTableJsonDefinition:
         return BQTableJsonDefinition(name, rows, schema, self._project, self._dataset, self._location)
 
