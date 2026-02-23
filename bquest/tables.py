@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Optional
 
 import google.cloud.bigquery
 import pandas as pd
+import pandas_gbq as pd_gbq
 from google.api_core.exceptions import BadRequest
 
 from bquest.util import is_sql
@@ -155,10 +156,11 @@ class BQTableDataframeDefinition(BQTableDefinition):
         Returns:
             BQTable: A representative of the BigQuery table which was created.
         """
-        self._df.to_gbq(
-            f"{self._dataset}.{self.table_name}",
-            location=self._location,
+        pd_gbq.to_gbq(
+            self._df,
+            destination_table=f"{self._dataset}.{self.table_name}",
             project_id=self._project,
+            location=self._location,
             if_exists="replace",
         )
         return BQTable(

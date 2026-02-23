@@ -14,14 +14,14 @@ class TestBigQueryTable:
     def bq_table_def_builder(self):
         return BQTableDefinitionBuilder("myproject")
 
-    @patch("uuid.uuid1")
+    @patch("uuid.uuid4")
     def test_load_to_bq_returns_table_with_random_name(self, mock_uuid_call: Any, bq_table_def_builder) -> None:
         mock_uuid_call.return_value = 1234
         table_def = bq_table_def_builder.from_json("mytable", [])
         result = table_def.load_to_bq(bq_client=MagicMock())
         assert result.fq_test_table_id == "myproject.bquest.mytable_1234"
 
-    @patch("uuid.uuid1")
+    @patch("uuid.uuid4")
     def test_replaces_special_chars_with_underscores_in_table_name_uuid(
         self, mock_uuid_call: Any, bq_table_def_builder
     ) -> None:
@@ -52,7 +52,7 @@ class TestBigQueryTable:
         )
         bq_table = BQTable("original_table_id", "test_table_id", bq_client)
         df = bq_table.to_df()
-        assert df["foo"][0] == "bar"
+        assert df["foo"].iloc[0] == "bar"
         bq_client.query.assert_called_with("SELECT * FROM `test_table_id`")
 
     def test_delete_table(self) -> None:
@@ -64,14 +64,18 @@ class TestBigQueryTable:
         assert table_reference.dataset_id == "dataset"
         assert table_reference.project == "project"
 
-    @patch("uuid.uuid1")
-    def test_load_to_bq_writes_multiple_rows_from_df(self, mock_uuid_call: Any, bq_table_def_builder) -> None:
+    @patch("pandas_gbq.to_gbq")
+    @patch("uuid.uuid4")
+    def test_load_to_bq_writes_multiple_rows_from_df(
+        self, mock_uuid_call: Any, mock_to_gbq_call: Any, bq_table_def_builder
+    ) -> None:
         mock_uuid_call.return_value = "1234"
         df = MagicMock()
         table_def = bq_table_def_builder.from_df("abc.mytable", df)
         table_def.load_to_bq(bq_client=MagicMock())
-        df.to_gbq.assert_called_with(
-            "bquest.abc_mytable_1234",
+        mock_to_gbq_call.assert_called_with(
+            df,
+            destination_table="bquest.abc_mytable_1234",
             location="EU",
             project_id="myproject",
             if_exists="replace",
