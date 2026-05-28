@@ -87,6 +87,7 @@ requires = ["uv_build>=0.9.21,<0.12.0"]
 build-backend = "uv_build"
 
 [tool.ruff]
+include = ["pyproject.toml", "src/**/*.py", "tests/**/*.py"]
 line-length = 120
 
 [tool.ruff.lint]
@@ -118,19 +119,19 @@ select = [
 unfixable = ["ERA", "F401", "F841", "T20", "ERA001"]
 
 [tool.ruff.lint.per-file-ignores]
-"**/__init__.py" = ["F401"]
+"src/bquest/**/__init__.py" = ["F401"]
 "tests/*" = ["S101"]
 
 [tool.poe.tasks]
 # Linting and formatting.
 lint = [
     { cmd = "ruff check ." },
-    { cmd = "ruff format --check bquest tests" },
+    { cmd = "ruff format --check" },
 ]
 
 format = [
-    { cmd = "ruff format bquest tests" },
-    { cmd = "ruff check --fix bquest tests" },
+    { cmd = "ruff format" },
+    { cmd = "ruff check --fix" },
 ]
 
 type = "mypy --ignore-missing-imports --strict bquest"
