@@ -40,6 +40,7 @@ classifiers = [
 ]
 dependencies = [
     "google-cloud-bigquery[bqstorage, pandas]>=3.8",
+    "numpy>=2.2.6",
     "pandas>=2.0",
     "pandas-gbq>=0.19",
     "sqlvalidator>=0.0.20",
@@ -53,7 +54,7 @@ Releases = "https://github.com/ottogroup/bquest/releases"
 
 [dependency-groups]
 dev = [
-    "creosote>=4.0.0",
+    "deptry>=0.25.1",
     "mypy>=1.3.0",
     "pip-audit>=2.8.0",
     "poethepoet>=0.20.0",
@@ -137,7 +138,7 @@ format = [
 type = "mypy --ignore-missing-imports --strict bquest"
 
 check_vulnerable_dependencies = "pip-audit"
-check_unused_dependencies = "creosote"
+check_unused_dependencies = "deptry src/bquest"
 check_githubactions = "zizmor .github/workflows/"
 
 
@@ -164,9 +165,5 @@ omit = [
     "tests/*",
 ]
 
-[tool.creosote]
-venvs=[".venv"]
-paths=["bquest", "tests"]
-deps-file="pyproject.toml"
-sections=["project.dependencies"]
-exclude-deps=["pandas-gbq"]
+[tool.deptry]
+known_first_party = ["bquest"]
