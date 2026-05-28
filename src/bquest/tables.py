@@ -232,7 +232,7 @@ class BQTableJsonDefinition(BQTableDefinition):
             job.result()
         except BadRequest as e:
             # same error but with full error msg
-            raise BadRequest(str(job.errors)) from e  # type: ignore
+            raise BadRequest(str(job.errors)) from e
 
         return BQTable(self._original_table_id, self.fq_table_id, bq_client)
 
