@@ -22,7 +22,7 @@ jobs:
       contents: read
     env:
       OS: "ubuntu-latest"
-      PYTHON: "3.12"
+      PYTHON: "3.14"
     steps:
       - name: Acquire sources
         uses: actions/checkout@v6
