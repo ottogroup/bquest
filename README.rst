@@ -1,6 +1,27 @@
 .. image:: https://raw.githubusercontent.com/ottogroup/bquest/main/docs/assets/logo.svg
     :alt: BQuest Logo
 
+===================
+Repository Archived
+===================
+
+This repository is now archived and is no longer actively maintained.
+
+What was 'bquest'?
+==================
+
+'bquest' was designed to help you validate and test Google BigQuery queries using Python and pandas DataFrames. We are incredibly grateful to everyone who used, contributed to, and supported this project over the years!
+
+What should you use instead?
+============================
+
+For your SQL unit testing needs going forward, we highly recommend transitioning to 'sqltesting' by Gurmeet Saran.
+
+'sqltesting' is a modern, robust library for running SQL unit tests. While 'bquest' was specifically focused on BigQuery, 'sqltesting' is a highly versatile alternative that supports testing SQL transformations using mock tables and assertions across multiple platforms—including BigQuery, Snowflake, Redshift, Athena, Trino, and DuckDB.
+
+You can find the project, view documentation, and get started here:
+https://github.com/gurmeetsaran/sqltesting
+
 BQuest
 ######
 
